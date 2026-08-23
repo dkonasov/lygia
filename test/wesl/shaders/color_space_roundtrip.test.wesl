@@ -1,16 +1,16 @@
 // Native WESL tests for color space roundtrip conversions
 
 import wgsl_test::expectNearVec4;
-import lygia::color::space::rgb2hsl::rgb2hsl4;
-import lygia::color::space::hsl2rgb::hsl2rgb4;
-import lygia::color::space::rgb2hsv::rgb2hsv4;
-import lygia::color::space::hsv2rgb::hsv2rgb4;
-import lygia::color::space::rgb2oklab::rgb2oklab4;
-import lygia::color::space::oklab2rgb::oklab2rgb4;
-import lygia::color::space::rgb2yiq::rgb2yiq4;
-import lygia::color::space::yiq2rgb::yiq2rgb4;
-import lygia::color::space::rgb2yuv::rgb2yuv4;
-import lygia::color::space::yuv2rgb::yuv2rgb4;
+import dkonasov__lygia::color::space::rgb2hsl::rgb2hsl4;
+import dkonasov__lygia::color::space::hsl2rgb::hsl2rgb4;
+import dkonasov__lygia::color::space::rgb2hsv::rgb2hsv4;
+import dkonasov__lygia::color::space::hsv2rgb::hsv2rgb4;
+import dkonasov__lygia::color::space::rgb2oklab::rgb2oklab4;
+import dkonasov__lygia::color::space::oklab2rgb::oklab2rgb4;
+import dkonasov__lygia::color::space::rgb2yiq::rgb2yiq4;
+import dkonasov__lygia::color::space::yiq2rgb::yiq2rgb4;
+import dkonasov__lygia::color::space::rgb2yuv::rgb2yuv4;
+import dkonasov__lygia::color::space::yuv2rgb::yuv2rgb4;
 
 @test(rgb_hsl_roundtrip)
 fn testRgbHslRoundtrip() {

@@ -1,8 +1,8 @@
-import lygia::math::consts::TAU;
-import lygia::math::aastep::aastep;
-import lygia::math::aafract::aafract;
-import lygia::space::cart2polar::cart2polar2;
-import lygia::color::space::linear2gamma::linear2gamma;
+import dkonasov__lygia::math::consts::TAU;
+import dkonasov__lygia::math::aastep::aastep;
+import dkonasov__lygia::math::aafract::aafract;
+import dkonasov__lygia::space::cart2polar::cart2polar2;
+import dkonasov__lygia::color::space::linear2gamma::linear2gamma;
 
 @group(0) @binding(0) var<uniform> uniforms: env::Uniforms;
 

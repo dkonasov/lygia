@@ -1,4 +1,4 @@
-import lygia::math::fmod::fmod3;
+import dkonasov__lygia::math::fmod::fmod3;
 
 /*
 contributors: Patricio Gonzalez Vivo

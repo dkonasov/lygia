@@ -1,10 +1,10 @@
 // Native WESL tests for distance functions
 
 import wgsl_test::expectNear;
-import lygia::math::lengthSq::lengthSq2;
-import lygia::math::lengthSq::lengthSq3;
-import lygia::math::dist::distEuclidean2;
-import lygia::math::dist::distManhattan2;
+import dkonasov__lygia::math::lengthSq::lengthSq2;
+import dkonasov__lygia::math::lengthSq::lengthSq3;
+import dkonasov__lygia::math::dist::distEuclidean2;
+import dkonasov__lygia::math::dist::distManhattan2;
 
 @test(lengthSq2_pythagorean)
 fn testLengthSq2() {

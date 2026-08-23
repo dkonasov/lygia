@@ -1,4 +1,4 @@
-import lygia::color::space::{oklab2rgb::oklab2rgb, rgb2srgb::rgb2srgb};
+import dkonasov__lygia::color::space::{oklab2rgb::oklab2rgb, rgb2srgb::rgb2srgb};
 
 /*
 contributors: Bjorn Ottosson (@bjornornorn)

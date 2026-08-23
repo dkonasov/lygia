@@ -1,4 +1,4 @@
-import lygia::space::sprite::sprite;
+import dkonasov__lygia::space::sprite::sprite;
 
 /*
 contributors: Patricio Gonzalez Vivo

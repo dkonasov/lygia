@@ -1,9 +1,9 @@
-import { test } from "vitest";
-import { expectCloseTo, lygiaTestCompute } from "./testUtil.ts";
+import { test } from 'vitest'
+import { expectCloseTo, lygiaTestCompute } from './testUtil.ts'
 
-test("hsv2ryb - FAST mode", async () => {
+test('hsv2ryb - FAST mode', async () => {
   const src = `
-     import lygia::color::space::hsv2ryb::hsv2ryb;
+     import dkonasov__lygia::color::space::hsv2ryb::hsv2ryb;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -11,11 +11,11 @@ test("hsv2ryb - FAST mode", async () => {
        let result = hsv2ryb(hsv);
        env::results[0] = result;
      }
-   `;
+   `
   const result = await lygiaTestCompute(src, {
-    elem: "vec3f",
+    elem: 'vec3f',
     conditions: { HSV2RYB_FAST: true },
-  });
+  })
   // HSV -> RYB using fast CMY bias version
-  expectCloseTo([0.9, 0.9, 0.18], result);
-});
+  expectCloseTo([0.9, 0.9, 0.18], result)
+})

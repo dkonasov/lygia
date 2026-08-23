@@ -1,5 +1,5 @@
-import lygia::math::quat::length::{quatLength};
-import lygia::math::quat::div::{quatDiv};
+import dkonasov__lygia::math::quat::length::{quatLength};
+import dkonasov__lygia::math::quat::div::{quatDiv};
 
 /*
 contributors: Patricio Gonzalez Vivo

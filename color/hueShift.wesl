@@ -1,5 +1,5 @@
-import lygia::color::space::{hsl2rgb::hsl2rgb, rgb2hsl::rgb2hsl};
-import lygia::math::consts::TAU;
+import dkonasov__lygia::color::space::{hsl2rgb::hsl2rgb, rgb2hsl::rgb2hsl};
+import dkonasov__lygia::math::consts::TAU;
 
 /*
 contributors:

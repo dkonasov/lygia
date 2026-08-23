@@ -12,7 +12,7 @@ license:
     - Copyright (c) 2021 Patricio Gonzalez Vivo under Patron License - https://lygia.xyz/license
 */
 
-import lygia::math::aastep::aastep;
+import dkonasov__lygia::math::aastep::aastep;
 
 fn fill(x: f32, size: f32) -> f32 {
     return 1.0 - aastep(size, x);

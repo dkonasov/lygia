@@ -1,9 +1,9 @@
-import { expect, test } from "vitest";
-import { expectCloseTo, lygiaTestCompute } from "./testUtil.ts";
+import { expect, test } from 'vitest'
+import { expectCloseTo, lygiaTestCompute } from './testUtil.ts'
 
-test("desaturate", async () => {
+test('desaturate', async () => {
   const src = `
-     import lygia::color::desaturate::desaturate;
+     import dkonasov__lygia::color::desaturate::desaturate;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -11,17 +11,17 @@ test("desaturate", async () => {
        let result = desaturate(color, 0.5); // 50% desaturation
        env::results[0] = result;
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec3f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec3f' })
   // Orange (1, 0.5, 0) with 50% desaturation should move toward gray (0.64, 0.64, 0.64)
   // Gray value is luminance: 1*0.3 + 0.5*0.59 + 0*0.11 = 0.3 + 0.295 = 0.595
   // 50% blend: (1+0.595)/2 = 0.7975, (0.5+0.595)/2 = 0.5475, (0+0.595)/2 = 0.2975
-  expectCloseTo([0.7975, 0.5475, 0.2975], result);
-});
+  expectCloseTo([0.7975, 0.5475, 0.2975], result)
+})
 
-test("desaturate4", async () => {
+test('desaturate4', async () => {
   const src = `
-     import lygia::color::desaturate::desaturate4;
+     import dkonasov__lygia::color::desaturate::desaturate4;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -29,15 +29,15 @@ test("desaturate4", async () => {
        let result = desaturate4(color, 0.5); // 50% desaturation
        env::results[0] = result;
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
   // RGB should be same as desaturate test, alpha should remain 0.8
-  expectCloseTo([0.7975, 0.5475, 0.2975, 0.8], result);
-});
+  expectCloseTo([0.7975, 0.5475, 0.2975, 0.8], result)
+})
 
-test("brightnessMatrix", async () => {
+test('brightnessMatrix', async () => {
   const src = `
-     import lygia::color::brightnessMatrix::brightnessMatrix;
+     import dkonasov__lygia::color::brightnessMatrix::brightnessMatrix;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -46,30 +46,30 @@ test("brightnessMatrix", async () => {
        // Matrix should have brightness offset in the last column
        env::results[0] = vec4f(matrix[3][0], matrix[3][1], matrix[3][2], matrix[3][3]);
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
   // The translation part should be (0.2, 0.2, 0.2, 1.0)
-  expectCloseTo([0.2, 0.2, 0.2, 1.0], result);
-});
+  expectCloseTo([0.2, 0.2, 0.2, 1.0], result)
+})
 
-test("contrast", async () => {
+test('contrast', async () => {
   const src = `
-     import lygia::color::contrast::contrast;
+     import dkonasov__lygia::color::contrast::contrast;
 
      @compute @workgroup_size(1)
      fn foo() {
        let result = contrast(0.7, 1.5);
        env::results[0] = result;
      }
-   `;
-  const result = await lygiaTestCompute(src);
+   `
+  const result = await lygiaTestCompute(src)
   // (0.7 - 0.5) * 1.5 + 0.5 = 0.2 * 1.5 + 0.5 = 0.8
-  expectCloseTo([0.8], result);
-});
+  expectCloseTo([0.8], result)
+})
 
-test("contrast3", async () => {
+test('contrast3', async () => {
   const src = `
-     import lygia::color::contrast::contrast3;
+     import dkonasov__lygia::color::contrast::contrast3;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -77,18 +77,18 @@ test("contrast3", async () => {
        let result = contrast3(color, 2.0);
        env::results[0] = result;
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec3f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec3f' })
   // Each component: (v - 0.5) * 2.0 + 0.5
   // r: (0.8 - 0.5) * 2 + 0.5 = 1.1
   // g: (0.6 - 0.5) * 2 + 0.5 = 0.7
   // b: (0.4 - 0.5) * 2 + 0.5 = 0.3
-  expectCloseTo([1.1, 0.7, 0.3], result);
-});
+  expectCloseTo([1.1, 0.7, 0.3], result)
+})
 
-test("contrastMatrix", async () => {
+test('contrastMatrix', async () => {
   const src = `
-     import lygia::color::contrastMatrix::contrastMatrix;
+     import dkonasov__lygia::color::contrastMatrix::contrastMatrix;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -96,15 +96,15 @@ test("contrastMatrix", async () => {
        // Test diagonal and translation values
        env::results[0] = vec4f(matrix[0][0], matrix[1][1], matrix[2][2], matrix[3][0]);
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
   // Diagonal should be 1.5, translation should be (1-1.5)*0.5 = -0.25
-  expectCloseTo([1.5, 1.5, 1.5, -0.25], result);
-});
+  expectCloseTo([1.5, 1.5, 1.5, -0.25], result)
+})
 
-test("brightnessContrast", async () => {
+test('brightnessContrast', async () => {
   const src = `
-     import lygia::color::brightnessContrast::brightnessContrast;
+     import dkonasov__lygia::color::brightnessContrast::brightnessContrast;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -114,15 +114,15 @@ test("brightnessContrast", async () => {
        let result = brightnessContrast(value, brightness, contrast);
        env::results[0] = result;
      }
-   `;
-  const result = await lygiaTestCompute(src);
+   `
+  const result = await lygiaTestCompute(src)
   // (0.7 - 0.5) * 1.5 + 0.5 + 0.1 = 0.2 * 1.5 + 0.6 = 0.9
-  expectCloseTo([0.9], result);
-});
+  expectCloseTo([0.9], result)
+})
 
-test("contrast4", async () => {
+test('contrast4', async () => {
   const src = `
-     import lygia::color::contrast::contrast4;
+     import dkonasov__lygia::color::contrast::contrast4;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -130,19 +130,19 @@ test("contrast4", async () => {
        let result = contrast4(color, 1.5);
        env::results[0] = result;
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
   // Each RGB component: (v - 0.5) * 1.5 + 0.5
   // r: (0.8 - 0.5) * 1.5 + 0.5 = 0.95
   // g: (0.6 - 0.5) * 1.5 + 0.5 = 0.65
   // b: (0.4 - 0.5) * 1.5 + 0.5 = 0.35
   // a: preserved at 0.9
-  expectCloseTo([0.95, 0.65, 0.35, 0.9], result);
-});
+  expectCloseTo([0.95, 0.65, 0.35, 0.9], result)
+})
 
-test("exposure", async () => {
+test('exposure', async () => {
   const src = `
-     import lygia::color::exposure::exposure;
+     import dkonasov__lygia::color::exposure::exposure;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -151,16 +151,16 @@ test("exposure", async () => {
        let result = exposure(value, amount);
        env::results[0] = result;
      }
-   `;
-  const result = await lygiaTestCompute(src);
+   `
+  const result = await lygiaTestCompute(src)
   // 0.25 * 2^2 = 0.25 * 4 = 1.0
-  expectCloseTo([1.0], result);
-});
+  expectCloseTo([1.0], result)
+})
 
-test("hueShift", async () => {
+test('hueShift', async () => {
   const src = `
-     import lygia::color::hueShift::hueShift;
-     import lygia::math::consts::TAU;
+     import dkonasov__lygia::color::hueShift::hueShift;
+     import dkonasov__lygia::math::consts::TAU;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -168,16 +168,16 @@ test("hueShift", async () => {
        let shifted = hueShift(rgb, TAU * 0.3333); // Shift by 120° (TAU/3 radians)
        env::results[0] = shifted;
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec3f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec3f' })
   // Red shifted by 120° should become green
   // HSV color space conversion introduces small floating-point errors (~0.0002)
-  expectCloseTo([0.0, 1.0, 0.0], result, 0.001);
-});
+  expectCloseTo([0.0, 1.0, 0.0], result, 0.001)
+})
 
-test("vibrance", async () => {
+test('vibrance', async () => {
   const src = `
-     import lygia::color::vibrance::vibrance3;
+     import dkonasov__lygia::color::vibrance::vibrance3;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -187,8 +187,8 @@ test("vibrance", async () => {
        let result = vibrance3(rgb, 0.5);
        env::results[0] = result;
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec3f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec3f' })
   // Vibrance formula: mix(vec3(luma), color, 1.0 + (v * 1.0 - sign(v) * sat))
   // max_color = 0.6, min_color = 0.4, sat = 0.2
   // luma ≈ 0.6*0.2126 + 0.5*0.7152 + 0.4*0.0722 = 0.5141
@@ -197,12 +197,12 @@ test("vibrance", async () => {
   // r: 0.5141 + (0.6 - 0.5141) * 1.3 = 0.5141 + 0.1117 = 0.6258
   // g: 0.5141 + (0.5 - 0.5141) * 1.3 = 0.5141 - 0.0183 = 0.4958
   // b: 0.5141 + (0.4 - 0.5141) * 1.3 = 0.5141 - 0.1483 = 0.3658
-  expectCloseTo([0.6258, 0.4958, 0.3658], result);
-});
+  expectCloseTo([0.6258, 0.4958, 0.3658], result)
+})
 
-test("vibrance - selective saturation boost", async () => {
+test('vibrance - selective saturation boost', async () => {
   const src = `
-     import lygia::color::vibrance::vibrance3;
+     import dkonasov__lygia::color::vibrance::vibrance3;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -224,16 +224,16 @@ test("vibrance - selective saturation boost", async () => {
 
        env::results[0] = vec4f(muted_sat_change, saturated_sat_change, desaturated.r, desaturated.g);
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
 
   // Vibrance should increase muted saturation more than saturated colors
   // muted_sat_change should be > saturated_sat_change
-  expect(result[0]).toBeGreaterThan(result[1]);
+  expect(result[0]).toBeGreaterThan(result[1])
 
   // Muted color should have increased saturation (change > 1.0)
-  expect(result[0]).toBeGreaterThan(1.0);
+  expect(result[0]).toBeGreaterThan(1.0)
 
   // Negative vibrance should move colors toward gray
-  expectCloseTo([0.833, 0.393], [result[2], result[3]]);
-});
+  expectCloseTo([0.833, 0.393], [result[2], result[3]])
+})

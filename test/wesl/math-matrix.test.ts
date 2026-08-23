@@ -1,11 +1,11 @@
-import { test } from "vitest";
-import { expectCloseTo, lygiaTestCompute } from "./testUtil.ts";
+import { test } from 'vitest'
+import { expectCloseTo, lygiaTestCompute } from './testUtil.ts'
 
 // Matrix conversion and operations
 
-test("toMat3", async () => {
+test('toMat3', async () => {
   const src = `
-    import lygia::math::toMat3::toMat3;
+    import dkonasov__lygia::math::toMat3::toMat3;
     @compute @workgroup_size(1)
     fn foo() {
       let m4 = mat4x4f(
@@ -17,14 +17,14 @@ test("toMat3", async () => {
       let m3 = toMat3(m4);
       env::results[0] = vec4f(m3[0][0], m3[1][1], m3[2][2], 0.0);
     }
-  `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
-  expectCloseTo([1.0, 6.0, 11.0, 0.0], result);
-});
+  `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
+  expectCloseTo([1.0, 6.0, 11.0, 0.0], result)
+})
 
-test("toMat4", async () => {
+test('toMat4', async () => {
   const src = `
-    import lygia::math::toMat4::toMat4;
+    import dkonasov__lygia::math::toMat4::toMat4;
     @compute @workgroup_size(1)
     fn foo() {
       let m3 = mat3x3f(
@@ -35,14 +35,14 @@ test("toMat4", async () => {
       let m4 = toMat4(m3);
       env::results[0] = vec4f(m4[0][0], m4[1][1], m4[2][2], m4[3][3]);
     }
-  `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
-  expectCloseTo([1.0, 5.0, 9.0, 1.0], result);
-});
+  `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
+  expectCloseTo([1.0, 5.0, 9.0, 1.0], result)
+})
 
-test("inverse - mat3", async () => {
+test('inverse - mat3', async () => {
   const src = `
-    import lygia::math::inverse::inverse;
+    import dkonasov__lygia::math::inverse::inverse;
     @compute @workgroup_size(1)
     fn foo() {
       let m = mat3x3f(
@@ -53,15 +53,15 @@ test("inverse - mat3", async () => {
       let mInv = inverse(m);
       env::results[0] = vec4f(mInv[0][0], mInv[1][1], mInv[2][2], 0.0);
     }
-  `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
+  `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
   // Inverse of diagonal matrix is 1/diagonal
-  expectCloseTo([1.0, 0.5, 0.333], result.slice(0, 3), 0.01);
-});
+  expectCloseTo([1.0, 0.5, 0.333], result.slice(0, 3), 0.01)
+})
 
-test("scale2d - uniform scale", async () => {
+test('scale2d - uniform scale', async () => {
   const src = `
-    import lygia::math::scale2d::scale2d;
+    import dkonasov__lygia::math::scale2d::scale2d;
     @compute @workgroup_size(1)
     fn foo() {
       let mat = scale2d(2.0);
@@ -69,14 +69,14 @@ test("scale2d - uniform scale", async () => {
       let result = mat * v;
       env::results[0] = vec4f(result.x, result.y, 0.0, 0.0);
     }
-  `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
-  expectCloseTo([6.0, 8.0, 0.0, 0.0], result);
-});
+  `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
+  expectCloseTo([6.0, 8.0, 0.0, 0.0], result)
+})
 
-test("scale2dVec - non-uniform scale", async () => {
+test('scale2dVec - non-uniform scale', async () => {
   const src = `
-    import lygia::math::scale2d::scale2dVec;
+    import dkonasov__lygia::math::scale2d::scale2dVec;
     @compute @workgroup_size(1)
     fn foo() {
       let mat = scale2dVec(vec2f(2.0, 3.0));
@@ -84,14 +84,14 @@ test("scale2dVec - non-uniform scale", async () => {
       let result = mat * v;
       env::results[0] = vec4f(result.x, result.y, 0.0, 0.0);
     }
-  `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
-  expectCloseTo([8.0, 15.0, 0.0, 0.0], result);
-});
+  `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
+  expectCloseTo([8.0, 15.0, 0.0, 0.0], result)
+})
 
-test("scale3d", async () => {
+test('scale3d', async () => {
   const src = `
-    import lygia::math::scale3d::scale3d;
+    import dkonasov__lygia::math::scale3d::scale3d;
     @compute @workgroup_size(1)
     fn foo() {
       let mat = scale3d(vec3f(2.0, 3.0, 4.0));
@@ -99,14 +99,14 @@ test("scale3d", async () => {
       let result = mat * v;
       env::results[0] = vec4f(result.x, result.y, result.z, 0.0);
     }
-  `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
-  expectCloseTo([2.0, 6.0, 12.0, 0.0], result);
-});
+  `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
+  expectCloseTo([2.0, 6.0, 12.0, 0.0], result)
+})
 
-test("scale4d", async () => {
+test('scale4d', async () => {
   const src = `
-    import lygia::math::scale4d::scale4d;
+    import dkonasov__lygia::math::scale4d::scale4d;
     @compute @workgroup_size(1)
     fn foo() {
       let mat = scale4d(vec3f(2.0, 3.0, 4.0));
@@ -114,14 +114,14 @@ test("scale4d", async () => {
       let result = mat * v;
       env::results[0] = result;
     }
-  `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
-  expectCloseTo([2.0, 6.0, 12.0, 1.0], result);
-});
+  `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
+  expectCloseTo([2.0, 6.0, 12.0, 1.0], result)
+})
 
-test("translate4d", async () => {
+test('translate4d', async () => {
   const src = `
-    import lygia::math::translate4d::translate4d;
+    import dkonasov__lygia::math::translate4d::translate4d;
     @compute @workgroup_size(1)
     fn foo() {
       let mat = translate4d(vec3f(10.0, 20.0, 30.0));
@@ -129,14 +129,14 @@ test("translate4d", async () => {
       let result = mat * v;
       env::results[0] = result;
     }
-  `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
-  expectCloseTo([11.0, 22.0, 33.0, 1.0], result);
-});
+  `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
+  expectCloseTo([11.0, 22.0, 33.0, 1.0], result)
+})
 
-test("translate4dXYZ", async () => {
+test('translate4dXYZ', async () => {
   const src = `
-    import lygia::math::translate4d::translate4dXYZ;
+    import dkonasov__lygia::math::translate4d::translate4dXYZ;
     @compute @workgroup_size(1)
     fn foo() {
       let mat = translate4dXYZ(5.0, 10.0, 15.0);
@@ -144,7 +144,7 @@ test("translate4dXYZ", async () => {
       let result = mat * v;
       env::results[0] = result;
     }
-  `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
-  expectCloseTo([6.0, 12.0, 18.0, 1.0], result);
-});
+  `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
+  expectCloseTo([6.0, 12.0, 18.0, 1.0], result)
+})

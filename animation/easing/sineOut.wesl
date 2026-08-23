@@ -1,4 +1,4 @@
-import lygia::math::consts::HALF_PI;
+import dkonasov__lygia::math::consts::HALF_PI;
 
 /*
 contributors: Hugh Kennedy (https://github.com/hughsk)

@@ -1,5 +1,5 @@
-import lygia::math::consts::{INV_PI, PI};
-import lygia::math::saturateMediump::saturateMediump;
+import dkonasov__lygia::math::consts::{INV_PI, PI};
+import dkonasov__lygia::math::saturateMediump::saturateMediump;
 
 // Walter et al. 2007, "Microfacet Models for Refraction through Rough Surfaces"
 

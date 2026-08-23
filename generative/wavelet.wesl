@@ -1,5 +1,5 @@
-import lygia::generative::random::random2;
-import lygia::math::rotate2d::rotate2d;
+import dkonasov__lygia::generative::random::random2;
+import dkonasov__lygia::math::rotate2d::rotate2d;
 
 /*
 contributors: Martijn Steinrucken

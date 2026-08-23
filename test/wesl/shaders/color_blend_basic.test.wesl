@@ -1,11 +1,11 @@
 // Native WESL tests for basic blend modes
 
 import wgsl_test::{expectNear, expectNearVec3};
-import lygia::color::blend::add::{blendAdd, blendAdd3};
-import lygia::color::blend::multiply::{blendMultiply, blendMultiply3};
-import lygia::color::blend::screen::{blendScreen, blendScreen3};
-import lygia::color::blend::average::{blendAverage, blendAverage3};
-import lygia::color::blend::lighten::{blendLighten, blendLighten3};
+import dkonasov__lygia::color::blend::add::{blendAdd, blendAdd3};
+import dkonasov__lygia::color::blend::multiply::{blendMultiply, blendMultiply3};
+import dkonasov__lygia::color::blend::screen::{blendScreen, blendScreen3};
+import dkonasov__lygia::color::blend::average::{blendAverage, blendAverage3};
+import dkonasov__lygia::color::blend::lighten::{blendLighten, blendLighten3};
 
 // vec3 blend tests
 

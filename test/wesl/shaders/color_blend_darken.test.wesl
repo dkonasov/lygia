@@ -1,9 +1,9 @@
 // Native WESL tests for darken blend modes
 
 import wgsl_test::{expectNear, expectNearVec3};
-import lygia::color::blend::darken::{blendDarken, blendDarken3};
-import lygia::color::blend::colorBurn::{blendColorBurn, blendColorBurn3};
-import lygia::color::blend::linearBurn::{blendLinearBurn, blendLinearBurn3};
+import dkonasov__lygia::color::blend::darken::{blendDarken, blendDarken3};
+import dkonasov__lygia::color::blend::colorBurn::{blendColorBurn, blendColorBurn3};
+import dkonasov__lygia::color::blend::linearBurn::{blendLinearBurn, blendLinearBurn3};
 
 // vec3 blend tests
 

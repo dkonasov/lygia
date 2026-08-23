@@ -1,4 +1,4 @@
-import lygia::math::decimate::decimate3;
+import dkonasov__lygia::math::decimate::decimate3;
 
 /*
 contributors: Patricio Gonzalez Vivo

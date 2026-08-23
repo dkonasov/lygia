@@ -1,6 +1,6 @@
 @if(CENTER_2D)
 import constants::CENTER_2D;
-import lygia::math::map::map;
+import dkonasov__lygia::math::map::map;
 
 /*
 contributors: Kathy McGuiness

@@ -4,7 +4,7 @@ import constants::CENTER_3D;
 @if(CENTER_4D)
 import constants::CENTER_4D;
 
-import lygia::math::rotate4dY::rotate4dY;
+import dkonasov__lygia::math::rotate4dY::rotate4dY;
 
 /*
 contributors: Patricio Gonzalez Vivo

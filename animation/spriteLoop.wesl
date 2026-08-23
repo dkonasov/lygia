@@ -1,4 +1,4 @@
-import lygia::sample::sprite::{sampleSprite};
+import dkonasov__lygia::sample::sprite::{sampleSprite};
 
 /*
 contributors: Patricio Gonzalez Vivo

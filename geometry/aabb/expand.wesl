@@ -1,5 +1,5 @@
 
-import lygia::geometry::aabb::aabb::AABB;
+import dkonasov__lygia::geometry::aabb::aabb::AABB;
 
 /*
 contributors: Patricio Gonzalez Vivo

@@ -1,4 +1,4 @@
-import lygia::color::space::rgb2hcv::rgb2hcv;
+import dkonasov__lygia::color::space::rgb2hcv::rgb2hcv;
 
 /*
 contributors: Patricio Gonzalez Vivo

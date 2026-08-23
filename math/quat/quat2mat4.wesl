@@ -1,5 +1,5 @@
-import lygia::math::quat::quat2mat3::{quat2mat3};
-import lygia::math::toMat4::{toMat4};
+import dkonasov__lygia::math::quat::quat2mat3::{quat2mat3};
+import dkonasov__lygia::math::toMat4::{toMat4};
 
 /*
 contributors: Patricio Gonzalez Vivo

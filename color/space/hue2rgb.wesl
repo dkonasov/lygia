@@ -6,7 +6,7 @@ license:
     - Copyright (c) 2021 Patricio Gonzalez Vivo under Patron License - https://lygia.xyz/license
 */
 
-import lygia::math::saturate::saturate3;
+import dkonasov__lygia::math::saturate::saturate3;
 
 fn hue2rgb(hue: f32) -> vec3f {
     let R = abs(hue * 6.0 - 3.0) - 1.0;

@@ -1,4 +1,4 @@
-import lygia::space::windmillTile::windmillTile2;
+import dkonasov__lygia::space::windmillTile::windmillTile2;
 import env::Uniforms;
 
 @group(0) @binding(0) var<uniform> uniforms: Uniforms;

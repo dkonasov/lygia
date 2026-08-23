@@ -1,20 +1,20 @@
-import { test } from "vitest";
-import { imageMatcher } from "vitest-image-snapshot";
-import { createSampler, getGPUDevice, lemurTexture } from "wgsl-test";
-import { lygiaExampleImage } from "./testUtil.ts";
+import { test } from 'vitest'
+import { imageMatcher } from 'vitest-image-snapshot'
+import { createSampler, getGPUDevice, lemurTexture } from 'wgsl-test'
+import { lygiaExampleImage } from './testUtil.ts'
 
-imageMatcher();
+imageMatcher()
 
-test("edgePrewitt - visual", async () => {
-  const device = await getGPUDevice();
-  const inputTex = await lemurTexture(device, 256);
-  const sampler = createSampler(device);
+test('edgePrewitt - visual', async () => {
+  const device = await getGPUDevice()
+  const inputTex = await lemurTexture(device, 256)
+  const sampler = createSampler(device)
 
-  await lygiaExampleImage(device, "filter-edge-prewitt", {
+  await lygiaExampleImage(device, 'filter-edge-prewitt', {
     textures: [inputTex],
     samplers: [sampler],
     shader: `
-      import lygia::filter::edge::prewitt::edgePrewitt;
+      import dkonasov__lygia::filter::edge::prewitt::edgePrewitt;
 
       @group(0) @binding(0) var<uniform> uniforms: env::Uniforms;
       @group(0) @binding(1) var input_tex: texture_2d<f32>;
@@ -28,5 +28,5 @@ test("edgePrewitt - visual", async () => {
         return vec4f(edge, 1.0);
       }
     `,
-  });
-});
+  })
+})

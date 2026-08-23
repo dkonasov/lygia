@@ -1,4 +1,4 @@
-import lygia::color::blend::overlay::{blendOverlay, blendOverlay3};
+import dkonasov__lygia::color::blend::overlay::{blendOverlay, blendOverlay3};
 
 /*
 contributors: Jamie Owen

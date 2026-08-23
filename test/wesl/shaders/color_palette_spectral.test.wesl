@@ -1,12 +1,12 @@
 // Native WESL tests for spectral palette functions
 
 import wgsl_test::expectNearVec3;
-import lygia::color::palette::spectral::geoffrey::spectral_geoffrey;
-import lygia::color::palette::spectral::soft::spectral_soft;
-import lygia::color::palette::spectral::gems::spectral_gems;
-import lygia::color::palette::spectral::zucconi::spectral_zucconi;
-import lygia::color::palette::spectral::zucconi6::spectral_zucconi6;
-import lygia::color::palette::spectral::{spectral, spectralExpand};
+import dkonasov__lygia::color::palette::spectral::geoffrey::spectral_geoffrey;
+import dkonasov__lygia::color::palette::spectral::soft::spectral_soft;
+import dkonasov__lygia::color::palette::spectral::gems::spectral_gems;
+import dkonasov__lygia::color::palette::spectral::zucconi::spectral_zucconi;
+import dkonasov__lygia::color::palette::spectral::zucconi6::spectral_zucconi6;
+import dkonasov__lygia::color::palette::spectral::{spectral, spectralExpand};
 
 // ============ spectral_geoffrey ============
 // Formula: r = (t * 2.0 - 0.5) * 2.1 - vec3(1.8, 1.14, 0.3); return 0.99 - r*r

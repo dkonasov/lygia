@@ -1,5 +1,5 @@
-import lygia::math::saturate::{saturate, saturate2, saturate3, saturate4};
-import lygia::math::quintic::{quintic, quintic2, quintic3, quintic4};
+import dkonasov__lygia::math::saturate::{saturate, saturate2, saturate3, saturate4};
+import dkonasov__lygia::math::quintic::{quintic, quintic2, quintic3, quintic4};
 
 /*
 contributors: Patricio Gonzalez Vivo

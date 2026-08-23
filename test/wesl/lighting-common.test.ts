@@ -1,9 +1,9 @@
-import { expect, test } from "vitest";
-import { expectCloseTo, lygiaTestCompute } from "./testUtil.ts";
+import { expect, test } from 'vitest'
+import { expectCloseTo, lygiaTestCompute } from './testUtil.ts'
 
-test("GGX", async () => {
+test('GGX', async () => {
   const src = `
-     import lygia::lighting::common::ggx::GGX;
+     import dkonasov__lygia::lighting::common::ggx::GGX;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -21,22 +21,22 @@ test("GGX", async () => {
 
        env::results[0] = vec3f(result1, result2, result3);
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec3f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec3f' })
   // GGX distribution peaks at NoH=1.0
-  expect(result[0]).toBeGreaterThan(0.3); // Peak value with roughness=0.5
+  expect(result[0]).toBeGreaterThan(0.3) // Peak value with roughness=0.5
   // GGX decreases as NoH decreases
-  expect(result[1]).toBeLessThan(result[0]);
+  expect(result[1]).toBeLessThan(result[0])
   // Lower roughness produces sharper, higher peak
-  expect(result[2]).toBeGreaterThan(result[0]);
+  expect(result[2]).toBeGreaterThan(result[0])
   // Exact values to catch regressions
-  expectCloseTo([1.2732, 0.2943, 31.831], result.slice(0, 3));
-});
+  expectCloseTo([1.2732, 0.2943, 31.831], result.slice(0, 3))
+})
 
-test("GGXPrecise", async () => {
+test('GGXPrecise', async () => {
   const src = `
-     import lygia::lighting::common::ggx::GGX;
-     import lygia::lighting::common::ggx::GGXPrecise;
+     import dkonasov__lygia::lighting::common::ggx::GGX;
+     import dkonasov__lygia::lighting::common::ggx::GGXPrecise;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -53,19 +53,19 @@ test("GGXPrecise", async () => {
 
        env::results[0] = vec2f(preciseFn, standardFn);
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec2f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec2f' })
   // GGXPrecise should produce similar results to standard GGX (identical on desktop)
-  expectCloseTo([result[0]], [result[1]]);
+  expectCloseTo([result[0]], [result[1]])
   // Both should be positive and reasonable
-  expect(result[0]).toBeGreaterThan(0.3);
+  expect(result[0]).toBeGreaterThan(0.3)
   // Exact values to catch regressions
-  expectCloseTo([1.2732, 1.2732], result.slice(0, 2));
-});
+  expectCloseTo([1.2732, 1.2732], result.slice(0, 2))
+})
 
-test("importanceSamplingGGX", async () => {
+test('importanceSamplingGGX', async () => {
   const src = `
-     import lygia::lighting::common::ggx::importanceSamplingGGX;
+     import dkonasov__lygia::lighting::common::ggx::importanceSamplingGGX;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -81,21 +81,21 @@ test("importanceSamplingGGX", async () => {
 
        env::results[0] = vec3f(sample1.z, length(sample2), sample3.z);
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec3f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec3f' })
   // u=(0,0) produces direction close to Z axis
-  expectCloseTo([1.0], [result[0]]);
+  expectCloseTo([1.0], [result[0]])
   // Samples should be normalized (unit length)
-  expectCloseTo([1.0], [result[1]]);
+  expectCloseTo([1.0], [result[1]])
   // Lower roughness biases toward Z
-  expect(result[2]).toBeGreaterThan(0.7);
+  expect(result[2]).toBeGreaterThan(0.7)
   // Exact values to catch regressions
-  expectCloseTo([1.0, 1.0, 0.995], result.slice(0, 3));
-});
+  expectCloseTo([1.0, 1.0, 0.995], result.slice(0, 3))
+})
 
-test("schlick vec3f", async () => {
+test('schlick vec3f', async () => {
   const src = `
-     import lygia::lighting::common::schlick::schlick;
+     import dkonasov__lygia::lighting::common::schlick::schlick;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -114,22 +114,22 @@ test("schlick vec3f", async () => {
 
        env::results[0] = vec3f(normalFn.x, grazingFn.x, midFn.x);
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec3f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec3f' })
   // At normal incidence, Fresnel equals f0
-  expectCloseTo([0.04], [result[0]]);
+  expectCloseTo([0.04], [result[0]])
   // At grazing angle, Fresnel approaches f90
-  expectCloseTo([1.0], [result[1]]);
+  expectCloseTo([1.0], [result[1]])
   // Mid-angle should be between f0 and f90
-  expect(result[2]).toBeGreaterThan(0.04);
-  expect(result[2]).toBeLessThan(1.0);
+  expect(result[2]).toBeGreaterThan(0.04)
+  expect(result[2]).toBeLessThan(1.0)
   // Exact values to catch regressions
-  expectCloseTo([0.04, 1.0, 0.07], result.slice(0, 3));
-});
+  expectCloseTo([0.04, 1.0, 0.07], result.slice(0, 3))
+})
 
-test("schlickVec3", async () => {
+test('schlickVec3', async () => {
   const src = `
-     import lygia::lighting::common::schlick::schlickVec3;
+     import dkonasov__lygia::lighting::common::schlick::schlickVec3;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -145,19 +145,19 @@ test("schlickVec3", async () => {
 
        env::results[0] = vec4f(normalFn, grazingFn.x);
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
   // At normal incidence, equals f0
-  expectCloseTo([1.0, 0.71, 0.29], [result[0], result[1], result[2]]);
+  expectCloseTo([1.0, 0.71, 0.29], [result[0], result[1], result[2]])
   // At grazing angle, approaches f90
-  expect(result[3]).toBeGreaterThan(0.85);
+  expect(result[3]).toBeGreaterThan(0.85)
   // Exact values to catch regressions
-  expectCloseTo([1.0, 0.71, 0.29, 1.0], result);
-});
+  expectCloseTo([1.0, 0.71, 0.29, 1.0], result)
+})
 
-test("schlickF32", async () => {
+test('schlickF32', async () => {
   const src = `
-     import lygia::lighting::common::schlick::schlickF32;
+     import dkonasov__lygia::lighting::common::schlick::schlickF32;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -172,22 +172,22 @@ test("schlickF32", async () => {
 
        env::results[0] = vec3f(normalFn, grazingFn, midFn);
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec3f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec3f' })
   // At normal incidence, equals f0
-  expectCloseTo([0.04], [result[0]]);
+  expectCloseTo([0.04], [result[0]])
   // At grazing, approaches f90
-  expectCloseTo([1.0], [result[1]]);
+  expectCloseTo([1.0], [result[1]])
   // Mid-angle between f0 and f90
-  expect(result[2]).toBeGreaterThan(0.04);
-  expect(result[2]).toBeLessThan(1.0);
+  expect(result[2]).toBeGreaterThan(0.04)
+  expect(result[2]).toBeLessThan(1.0)
   // Exact values to catch regressions
-  expectCloseTo([0.04, 1.0, 0.07], result);
-});
+  expectCloseTo([0.04, 1.0, 0.07], result)
+})
 
-test("smithGGXCorrelated", async () => {
+test('smithGGXCorrelated', async () => {
   const src = `
-     import lygia::lighting::common::smithGGXCorrelated::smithGGXCorrelated;
+     import dkonasov__lygia::lighting::common::smithGGXCorrelated::smithGGXCorrelated;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -204,21 +204,21 @@ test("smithGGXCorrelated", async () => {
 
        env::results[0] = vec3f(smoothFn, roughFn, perfectFn);
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec3f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec3f' })
   // Smooth surfaces have higher visibility
-  expect(result[0]).toBeGreaterThan(result[1]);
+  expect(result[0]).toBeGreaterThan(result[1])
   // Rough surfaces still have positive visibility
-  expect(result[1]).toBeGreaterThan(0.0);
+  expect(result[1]).toBeGreaterThan(0.0)
   // Perfect alignment has good visibility (visibility term is clamped)
-  expect(result[2]).toBeGreaterThan(0.2);
+  expect(result[2]).toBeGreaterThan(0.2)
   // Exact values to catch regressions
-  expectCloseTo([0.4447, 0.3482, 0.25], result.slice(0, 3));
-});
+  expectCloseTo([0.4447, 0.3482, 0.25], result.slice(0, 3))
+})
 
-test("smithGGXCorrelated_Fast", async () => {
+test('smithGGXCorrelated_Fast', async () => {
   const src = `
-     import lygia::lighting::common::smithGGXCorrelated::{smithGGXCorrelated, smithGGXCorrelated_Fast};
+     import dkonasov__lygia::lighting::common::smithGGXCorrelated::{smithGGXCorrelated, smithGGXCorrelated_Fast};
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -236,12 +236,12 @@ test("smithGGXCorrelated_Fast", async () => {
 
        env::results[0] = vec4f(standardFn, fastFn, fastSmoothFn, fastRoughFn);
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
   // Fast approximation should be reasonably close to standard
-  expect(Math.abs(result[0] - result[1])).toBeLessThan(0.1);
+  expect(Math.abs(result[0] - result[1])).toBeLessThan(0.1)
   // Fast version should also show smooth > rough
-  expect(result[2]).toBeGreaterThan(result[3]);
+  expect(result[2]).toBeGreaterThan(result[3])
   // Exact values to catch regressions
-  expectCloseTo([0.4076, 0.3817, 0.4318, 0.342], result);
-});
+  expectCloseTo([0.4076, 0.3817, 0.4318, 0.342], result)
+})

@@ -1,5 +1,5 @@
-import lygia::generative::snoise:snoise;
-import lygia::generative::gnoise::gnoise;
+import dkonasov__lygia::generative::snoise:snoise;
+import dkonasov__lygia::generative::gnoise::gnoise;
 
 /*
 contributors: Patricio Gonzalez Vivo

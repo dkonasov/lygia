@@ -1,4 +1,4 @@
-import lygia::animation::easing::backIn::{backIn};
+import dkonasov__lygia::animation::easing::backIn::{backIn};
 
 /*
 contributors: Hugh Kennedy (https://github.com/hughsk)

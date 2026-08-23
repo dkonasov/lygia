@@ -1,4 +1,4 @@
-import lygia::math::pow5::pow5;
+import dkonasov__lygia::math::pow5::pow5;
 
 // Schlick 1994, "An Inexpensive BRDF Model for Physically-Based Rendering"
 fn schlick(f0: vec3f, f90: f32, VoH: f32) -> vec3f {

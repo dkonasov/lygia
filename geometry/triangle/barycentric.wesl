@@ -1,5 +1,5 @@
-import lygia::geometry::triangle::area::area;
-import lygia::geometry::triangle::triangle::Triangle;
+import dkonasov__lygia::geometry::triangle::area::area;
+import dkonasov__lygia::geometry::triangle::triangle::Triangle;
 
 /*
 contributors: Patricio Gonzalez Vivo

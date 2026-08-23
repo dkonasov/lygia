@@ -1,7 +1,7 @@
-import lygia::math::rotate3dX::rotate3dX;
-import lygia::math::rotate3dY::rotate3dY;
-import lygia::math::rotate3dZ::rotate3dZ;
-import lygia::space::translate::translate;
+import dkonasov__lygia::math::rotate3dX::rotate3dX;
+import dkonasov__lygia::math::rotate3dY::rotate3dY;
+import dkonasov__lygia::math::rotate3dZ::rotate3dZ;
+import dkonasov__lygia::space::translate::translate;
 
 /*
 contributors:  Shadi El Hajj

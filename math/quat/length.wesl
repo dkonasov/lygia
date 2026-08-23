@@ -1,4 +1,4 @@
-import lygia::math::quat::lengthSq::{quatLengthSq};
+import dkonasov__lygia::math::quat::lengthSq::{quatLengthSq};
 
 /*
 contributors: Patricio Gonzalez Vivo

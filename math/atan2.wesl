@@ -1,4 +1,4 @@
-import lygia::math::consts::{PI, TAU};
+import dkonasov__lygia::math::consts::{PI, TAU};
 
 /*
 contributors: Alexander Griffis

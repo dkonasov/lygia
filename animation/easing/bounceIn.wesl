@@ -1,4 +1,4 @@
-import lygia::animation::easing::bounceOut::{bounceOut};
+import dkonasov__lygia::animation::easing::bounceOut::{bounceOut};
 
 /*
 contributors: Hugh Kennedy (https://github.com/hughsk)

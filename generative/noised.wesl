@@ -1,4 +1,4 @@
-import lygia::generative::srandom::{srandom22, srandom33};
+import dkonasov__lygia::generative::srandom::{srandom22, srandom33};
 
 /*
 contributors:

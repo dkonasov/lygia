@@ -1,4 +1,4 @@
-import lygia::math::inverse::inverse4;
+import dkonasov__lygia::math::inverse::inverse4;
 
 @if(CAMERA_PROJECTION_MATRIX)
 import constants::CAMERA_PROJECTION_MATRIX;

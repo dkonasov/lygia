@@ -1,4 +1,4 @@
-import lygia::color::space::rgb2luma::rgb2luma;
+import dkonasov__lygia::color::space::rgb2luma::rgb2luma;
 
 /*
 contributors: Hugh Kennedy (https://github.com/hughsk)

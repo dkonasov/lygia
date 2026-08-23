@@ -4,7 +4,7 @@ description: ACES Filmic Tone Mapping Curve. https://knarkowicz.wordpress.com/20
 use: tonemapACES(<vec3f|vec4f> x)
 */
 
-import lygia::math::saturate::saturate3;
+import dkonasov__lygia::math::saturate::saturate3;
 
 const aces_a: f32 = 2.51;
 const aces_b: f32 = 0.03;

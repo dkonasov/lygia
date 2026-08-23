@@ -1,4 +1,4 @@
-import lygia::math::consts::{PI, TWO_PI};
+import dkonasov__lygia::math::consts::{PI, TWO_PI};
 
 /*
 contributors: Patricio Gonzalez Vivo

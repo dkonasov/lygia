@@ -1,20 +1,20 @@
 // Native WESL tests for RGB-related color space conversions
 
 import wgsl_test::{expectNear, expectNearVec3, expectNearVec4};
-import lygia::color::space::hsl2rgb::{hsl2rgb, hsl2rgb4};
-import lygia::color::space::rgb2hsl::{rgb2hsl, rgb2hsl4};
-import lygia::color::space::hsv2rgb::{hsv2rgb, hsv2rgb4};
-import lygia::color::space::rgb2hsv::{rgb2hsv, rgb2hsv4};
-import lygia::color::space::hcy2rgb::{hcy2rgb, hcy2rgb4};
-import lygia::color::space::rgb2hcy::{rgb2hcy, rgb2hcy4};
-import lygia::color::space::hsv2ryb::hsv2ryb;
-import lygia::color::space::rgb2luma::{rgb2luma, rgb2luma4};
-import lygia::color::space::srgb2luma::{srgb2luma, srgb2luma4};
-import lygia::color::space::rgb2hcv::{rgb2hcv, rgb2hcv4};
-import lygia::color::space::rgb2hue::{rgb2hue, rgb2hue4};
-import lygia::color::space::hue2rgb::hue2rgb;
-import lygia::color::space::rgb2srgb::{rgb2srgb_mono, rgb2srgb, rgb2srgb4};
-import lygia::color::space::srgb2rgb::{srgb2rgb_mono, srgb2rgb, srgb2rgb4};
+import dkonasov__lygia::color::space::hsl2rgb::{hsl2rgb, hsl2rgb4};
+import dkonasov__lygia::color::space::rgb2hsl::{rgb2hsl, rgb2hsl4};
+import dkonasov__lygia::color::space::hsv2rgb::{hsv2rgb, hsv2rgb4};
+import dkonasov__lygia::color::space::rgb2hsv::{rgb2hsv, rgb2hsv4};
+import dkonasov__lygia::color::space::hcy2rgb::{hcy2rgb, hcy2rgb4};
+import dkonasov__lygia::color::space::rgb2hcy::{rgb2hcy, rgb2hcy4};
+import dkonasov__lygia::color::space::hsv2ryb::hsv2ryb;
+import dkonasov__lygia::color::space::rgb2luma::{rgb2luma, rgb2luma4};
+import dkonasov__lygia::color::space::srgb2luma::{srgb2luma, srgb2luma4};
+import dkonasov__lygia::color::space::rgb2hcv::{rgb2hcv, rgb2hcv4};
+import dkonasov__lygia::color::space::rgb2hue::{rgb2hue, rgb2hue4};
+import dkonasov__lygia::color::space::hue2rgb::hue2rgb;
+import dkonasov__lygia::color::space::rgb2srgb::{rgb2srgb_mono, rgb2srgb, rgb2srgb4};
+import dkonasov__lygia::color::space::srgb2rgb::{srgb2rgb_mono, srgb2rgb, srgb2rgb4};
 
 // HSL conversions
 @test

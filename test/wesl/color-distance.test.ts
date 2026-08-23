@@ -1,9 +1,9 @@
-import { expect, test } from "vitest";
-import { expectCloseTo, lygiaTestCompute } from "./testUtil.ts";
+import { expect, test } from 'vitest'
+import { expectCloseTo, lygiaTestCompute } from './testUtil.ts'
 
-test("colorDistance", async () => {
+test('colorDistance', async () => {
   const src = `
-     import lygia::color::distance::colorDistance;
+     import dkonasov__lygia::color::distance::colorDistance;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -12,15 +12,15 @@ test("colorDistance", async () => {
        let distance = colorDistance(red, blue);
        env::results[0] = distance;
      }
-   `;
-  const result = await lygiaTestCompute(src);
+   `
+  const result = await lygiaTestCompute(src)
   // Default is CIE94 distance between red and blue (0-100 scale)
-  expectCloseTo([71.0491], result);
-});
+  expectCloseTo([71.0491], result)
+})
 
-test("colorDistance4", async () => {
+test('colorDistance4', async () => {
   const src = `
-     import lygia::color::distance::colorDistance4;
+     import dkonasov__lygia::color::distance::colorDistance4;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -29,15 +29,15 @@ test("colorDistance4", async () => {
        let distance = colorDistance4(red, blue);
        env::results[0] = distance;
      }
-   `;
-  const result = await lygiaTestCompute(src);
+   `
+  const result = await lygiaTestCompute(src)
   // Alpha is ignored, should be same as colorDistance (0-100 scale)
-  expectCloseTo([71.0491], result);
-});
+  expectCloseTo([71.0491], result)
+})
 
-test("colorDistanceLAB", async () => {
+test('colorDistanceLAB', async () => {
   const src = `
-     import lygia::color::distance::colorDistanceLAB;
+     import dkonasov__lygia::color::distance::colorDistanceLAB;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -46,16 +46,16 @@ test("colorDistanceLAB", async () => {
        let result = colorDistanceLAB(color1, color2);
        env::results[0] = result;
      }
-   `;
-  const result = await lygiaTestCompute(src);
+   `
+  const result = await lygiaTestCompute(src)
   // LAB Euclidean distance between red and blue in LAB color space (0-100 scale)
   // This is a perceptual color distance metric
-  expectCloseTo([176.314], result);
-});
+  expectCloseTo([176.314], result)
+})
 
-test("colorDistanceLABCIE94", async () => {
+test('colorDistanceLABCIE94', async () => {
   const src = `
-     import lygia::color::distance::colorDistanceLABCIE94;
+     import dkonasov__lygia::color::distance::colorDistanceLABCIE94;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -64,16 +64,16 @@ test("colorDistanceLABCIE94", async () => {
        let distance = colorDistanceLABCIE94(green, yellow);
        env::results[0] = distance;
      }
-   `;
-  const result = await lygiaTestCompute(src);
+   `
+  const result = await lygiaTestCompute(src)
   // CIE94 distance between green and yellow (0-100 scale)
   // These are relatively close colors in perceptual space
-  expectCloseTo([10.0626], result);
-});
+  expectCloseTo([10.0626], result)
+})
 
-test("colorDistanceOKLAB", async () => {
+test('colorDistanceOKLAB', async () => {
   const src = `
-     import lygia::color::distance::colorDistanceOKLAB;
+     import dkonasov__lygia::color::distance::colorDistanceOKLAB;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -87,29 +87,29 @@ test("colorDistanceOKLAB", async () => {
 
        env::results[0] = vec4f(redToOrange, redToBlue, 0.0, 0.0);
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
 
-  const redToOrange = result[0];
-  const redToBlue = result[1];
+  const redToOrange = result[0]
+  const redToBlue = result[1]
 
   // Orange is perceptually closer to red than blue is
-  expect(redToOrange).toBeLessThan(redToBlue);
+  expect(redToOrange).toBeLessThan(redToBlue)
 
   // Red-orange should be relatively small (similar hues)
-  expect(redToOrange).toBeGreaterThan(0.05);
-  expect(redToOrange).toBeLessThan(0.3);
+  expect(redToOrange).toBeGreaterThan(0.05)
+  expect(redToOrange).toBeLessThan(0.3)
 
   // Red-blue should be larger (opposite hues)
-  expect(redToBlue).toBeGreaterThan(0.3);
+  expect(redToBlue).toBeGreaterThan(0.3)
 
   // Regression check - exact OKLAB distance values
-  expectCloseTo([0.2917, 0.5371], [redToOrange, redToBlue]);
-});
+  expectCloseTo([0.2917, 0.5371], [redToOrange, redToBlue])
+})
 
-test("colorDistanceYCbCr", async () => {
+test('colorDistanceYCbCr', async () => {
   const src = `
-     import lygia::color::distance::colorDistanceYCbCr;
+     import dkonasov__lygia::color::distance::colorDistanceYCbCr;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -126,27 +126,27 @@ test("colorDistanceYCbCr", async () => {
 
        env::results[0] = vec4f(chromaDist, lumaDist, 0.0, 0.0);
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
 
-  const chromaDist = result[0];
-  const lumaDist = result[1];
+  const chromaDist = result[0]
+  const lumaDist = result[1]
 
   // Different chrominance should produce measurable distance
-  expect(chromaDist).toBeGreaterThan(0.5);
-  expect(chromaDist).toBeLessThan(1.5);
+  expect(chromaDist).toBeGreaterThan(0.5)
+  expect(chromaDist).toBeLessThan(1.5)
 
   // Same chrominance (grays) should have near-zero distance
   // (YCbCr distance ignores Y/luma)
-  expectCloseTo([0.0], [lumaDist]);
+  expectCloseTo([0.0], [lumaDist])
 
   // Regression check - exact YCbCr chroma distance
-  expectCloseTo([0.5316], [chromaDist]);
-});
+  expectCloseTo([0.5316], [chromaDist])
+})
 
-test("colorDistanceYPbPr", async () => {
+test('colorDistanceYPbPr', async () => {
   const src = `
-     import lygia::color::distance::colorDistanceYPbPr;
+     import dkonasov__lygia::color::distance::colorDistanceYPbPr;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -165,30 +165,30 @@ test("colorDistanceYPbPr", async () => {
 
        env::results[0] = vec4f(complementaryDist, similarDist, dist1, dist2);
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
 
-  const complementaryDist = result[0];
-  const similarDist = result[1];
-  const dist1 = result[2];
-  const dist2 = result[3];
+  const complementaryDist = result[0]
+  const similarDist = result[1]
+  const dist1 = result[2]
+  const dist2 = result[3]
 
   // Complementary colors should have larger distance than similar colors
-  expect(complementaryDist).toBeGreaterThan(similarDist);
+  expect(complementaryDist).toBeGreaterThan(similarDist)
 
   // Distance should be symmetric
-  expectCloseTo([dist1], [dist2]);
+  expectCloseTo([dist1], [dist2])
 
   // Complementary colors should have significant distance
-  expect(complementaryDist).toBeGreaterThan(0.5);
+  expect(complementaryDist).toBeGreaterThan(0.5)
 
   // Regression check - exact YPbPr distance values
-  expectCloseTo([0.9919, 0.5957], [complementaryDist, similarDist]);
-});
+  expectCloseTo([0.9919, 0.5957], [complementaryDist, similarDist])
+})
 
-test("colorDistanceYUV", async () => {
+test('colorDistanceYUV', async () => {
   const src = `
-     import lygia::color::distance::colorDistanceYUV;
+     import dkonasov__lygia::color::distance::colorDistanceYUV;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -197,9 +197,9 @@ test("colorDistanceYUV", async () => {
        let distance = colorDistanceYUV(white, gray);
        env::results[0] = distance;
      }
-   `;
-  const result = await lygiaTestCompute(src);
+   `
+  const result = await lygiaTestCompute(src)
   // YUV distance between white and gray (mainly Y difference)
   // Should be around 0.5 (difference in luminance)
-  expectCloseTo([0.5], result);
-});
+  expectCloseTo([0.5], result)
+})

@@ -1,5 +1,5 @@
-import lygia::math::cubicMix::cubicMix3;
-import lygia::math::{mmin::mmin3, mmax::mmax3};
+import dkonasov__lygia::math::cubicMix::cubicMix3;
+import dkonasov__lygia::math::{mmin::mmin3, mmax::mmax3};
 
 /*
 contributors: Patricio Gonzalez Vivo

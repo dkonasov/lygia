@@ -20,7 +20,7 @@ and constants will be available for you to use
 via `import` statements in your application shader code.
 
 ```rs
-import lygia::math::consts::PI;
+import dkonasov__lygia::math::consts::PI;
 
 fn main() {
   let p = PI;
@@ -118,7 +118,7 @@ You can use the linking API directly to build custom solutions:
 ```ts
 import { link } from "wesl";
 
-const main = `import lygia::math::consts::PI; ...`;
+const main = `import dkonasov__lygia::math::consts::PI; ...`;
 const linked = await link({weslSrc: {main }});
 const shaderModule = linked.createShaderModule(gpuDevice);
 ```

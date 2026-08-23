@@ -1,4 +1,4 @@
-import lygia::math::consts::PI;
+import dkonasov__lygia::math::consts::PI;
 
 /*
 contributors: Holger Dammertz

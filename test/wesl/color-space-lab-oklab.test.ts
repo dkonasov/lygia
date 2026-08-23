@@ -1,9 +1,9 @@
-import { test } from "vitest";
-import { expectCloseTo, lygiaTestCompute } from "./testUtil.ts";
+import { test } from 'vitest'
+import { expectCloseTo, lygiaTestCompute } from './testUtil.ts'
 
-test("oklab2srgb", async () => {
+test('oklab2srgb', async () => {
   const src = `
-     import lygia::color::space::oklab2srgb::oklab2srgb;
+     import dkonasov__lygia::color::space::oklab2srgb::oklab2srgb;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -11,15 +11,15 @@ test("oklab2srgb", async () => {
        let result = oklab2srgb(oklab);
        env::results[0] = result;
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec3f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec3f' })
   // Oklab -> sRGB
-  expectCloseTo([1.0, 0.0, 0.0], result);
-});
+  expectCloseTo([1.0, 0.0, 0.0], result)
+})
 
-test("srgb2oklab", async () => {
+test('srgb2oklab', async () => {
   const src = `
-     import lygia::color::space::srgb2oklab::srgb2oklab;
+     import dkonasov__lygia::color::space::srgb2oklab::srgb2oklab;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -27,15 +27,15 @@ test("srgb2oklab", async () => {
        let result = srgb2oklab(srgb);
        env::results[0] = result;
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec3f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec3f' })
   // sRGB(1, 0, 0) -> Oklab
-  expectCloseTo([0.628, 0.2249, 0.1258], result);
-});
+  expectCloseTo([0.628, 0.2249, 0.1258], result)
+})
 
-test("oklab2rgb", async () => {
+test('oklab2rgb', async () => {
   const src = `
-     import lygia::color::space::oklab2rgb::oklab2rgb;
+     import dkonasov__lygia::color::space::oklab2rgb::oklab2rgb;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -43,15 +43,15 @@ test("oklab2rgb", async () => {
        let result = oklab2rgb(oklab);
        env::results[0] = result;
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec3f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec3f' })
   // Oklab(0.628, 0.225, 0.126) -> RGB(1, 0, 0)
-  expectCloseTo([1.0008, -0.0002, -0.0002], result);
-});
+  expectCloseTo([1.0008, -0.0002, -0.0002], result)
+})
 
-test("rgb2oklab", async () => {
+test('rgb2oklab', async () => {
   const src = `
-     import lygia::color::space::rgb2oklab::rgb2oklab;
+     import dkonasov__lygia::color::space::rgb2oklab::rgb2oklab;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -59,15 +59,15 @@ test("rgb2oklab", async () => {
        let result = rgb2oklab(rgb);
        env::results[0] = result;
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec3f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec3f' })
   // RGB(1, 0, 0) -> Oklab
-  expectCloseTo([0.628, 0.2249, 0.1258], result);
-});
+  expectCloseTo([0.628, 0.2249, 0.1258], result)
+})
 
-test("oklab2rgb4 - alpha preservation", async () => {
+test('oklab2rgb4 - alpha preservation', async () => {
   const src = `
-     import lygia::color::space::oklab2rgb::oklab2rgb4;
+     import dkonasov__lygia::color::space::oklab2rgb::oklab2rgb4;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -75,14 +75,14 @@ test("oklab2rgb4 - alpha preservation", async () => {
        let result = oklab2rgb4(oklab);
        env::results[0] = result;
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
-  expectCloseTo([1.0008, -0.0002, -0.0002, 0.45], result);
-});
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
+  expectCloseTo([1.0008, -0.0002, -0.0002, 0.45], result)
+})
 
-test("oklab2srgb4 - alpha preservation", async () => {
+test('oklab2srgb4 - alpha preservation', async () => {
   const src = `
-     import lygia::color::space::oklab2srgb::oklab2srgb4;
+     import dkonasov__lygia::color::space::oklab2srgb::oklab2srgb4;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -90,14 +90,14 @@ test("oklab2srgb4 - alpha preservation", async () => {
        let result = oklab2srgb4(oklab);
        env::results[0] = result;
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
-  expectCloseTo([1.0, 0.0, 0.0, 0.35], result);
-});
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
+  expectCloseTo([1.0, 0.0, 0.0, 0.35], result)
+})
 
-test("rgb2oklab4 - alpha preservation", async () => {
+test('rgb2oklab4 - alpha preservation', async () => {
   const src = `
-     import lygia::color::space::rgb2oklab::rgb2oklab4;
+     import dkonasov__lygia::color::space::rgb2oklab::rgb2oklab4;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -105,14 +105,14 @@ test("rgb2oklab4 - alpha preservation", async () => {
        let result = rgb2oklab4(rgb);
        env::results[0] = result;
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
-  expectCloseTo([0.628, 0.2249, 0.1258, 0.6], result);
-});
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
+  expectCloseTo([0.628, 0.2249, 0.1258, 0.6], result)
+})
 
-test("srgb2oklab4 - alpha preservation", async () => {
+test('srgb2oklab4 - alpha preservation', async () => {
   const src = `
-     import lygia::color::space::srgb2oklab::srgb2oklab4;
+     import dkonasov__lygia::color::space::srgb2oklab::srgb2oklab4;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -120,7 +120,7 @@ test("srgb2oklab4 - alpha preservation", async () => {
        let result = srgb2oklab4(srgb);
        env::results[0] = result;
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
-  expectCloseTo([0.62796, 0.22486, 0.12585, 0.85], result);
-});
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
+  expectCloseTo([0.62796, 0.22486, 0.12585, 0.85], result)
+})

@@ -1,9 +1,9 @@
-import { expect, test } from "vitest";
-import { expectCloseTo, lygiaTestCompute } from "./testUtil.ts";
+import { expect, test } from 'vitest'
+import { expectCloseTo, lygiaTestCompute } from './testUtil.ts'
 
-test("noised2", async () => {
+test('noised2', async () => {
   const src = `
-     import lygia::generative::noised::noised2;
+     import dkonasov__lygia::generative::noised::noised2;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -22,21 +22,21 @@ test("noised2", async () => {
 
        env::results[0] = vec4f(dx_analytical, dx_numerical, dy_analytical, dy_numerical);
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
   // Test that analytical derivatives match numerical derivatives
   // Note: precision=2 allows for numerical differentiation error (finite differences introduce ~0.01 error)
-  expectCloseTo([result[0], result[2]], [result[1], result[3]], 2);
+  expectCloseTo([result[0], result[2]], [result[1], result[3]], 2)
   // Derivatives should be in reasonable range
-  expect(Math.abs(result[0])).toBeLessThan(5.0);
-  expect(Math.abs(result[2])).toBeLessThan(5.0);
+  expect(Math.abs(result[0])).toBeLessThan(5.0)
+  expect(Math.abs(result[2])).toBeLessThan(5.0)
   // Regression: exact output value
-  expectCloseTo([-0.3648], [result[0]]);
-});
+  expectCloseTo([-0.3648], [result[0]])
+})
 
-test("noised3", async () => {
+test('noised3', async () => {
   const src = `
-     import lygia::generative::noised::noised3;
+     import dkonasov__lygia::generative::noised::noised3;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -57,19 +57,19 @@ test("noised3", async () => {
        // Pack all results into a single vec4f (we only have one result slot)
        env::results[0] = vec4f(dx_analytical, dx_numerical, dy_analytical, dy_numerical);
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
   // Test that analytical derivatives match numerical derivatives
   // Note: precision=2 allows for numerical differentiation error (finite differences introduce ~0.01 error)
-  expectCloseTo([result[0], result[2]], [result[1], result[3]], 2);
+  expectCloseTo([result[0], result[2]], [result[1], result[3]], 2)
   // Derivatives should be in reasonable range
-  expect(Math.abs(result[0])).toBeLessThan(5.0);
-  expect(Math.abs(result[2])).toBeLessThan(5.0);
-});
+  expect(Math.abs(result[0])).toBeLessThan(5.0)
+  expect(Math.abs(result[2])).toBeLessThan(5.0)
+})
 
-test("wavelet2", async () => {
+test('wavelet2', async () => {
   const src = `
-     import lygia::generative::wavelet::wavelet2;
+     import dkonasov__lygia::generative::wavelet::wavelet2;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -83,19 +83,19 @@ test("wavelet2", async () => {
 
        env::results[0] = vec4f(w1, w2, w3, 0.0);
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
   // Test determinism: same input produces same output
-  expectCloseTo([result[0]], [result[1]]);
+  expectCloseTo([result[0]], [result[1]])
   // Test that different inputs produce different outputs
-  expect(result[0]).not.toBeCloseTo(result[2], 1);
+  expect(result[0]).not.toBeCloseTo(result[2], 1)
   // Regression: exact output value
-  expectCloseTo([-0.1946], [result[0]]);
-});
+  expectCloseTo([-0.1946], [result[0]])
+})
 
-test("wavelet3", async () => {
+test('wavelet3', async () => {
   const src = `
-     import lygia::generative::wavelet::wavelet3;
+     import dkonasov__lygia::generative::wavelet::wavelet3;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -110,19 +110,19 @@ test("wavelet3", async () => {
 
        env::results[0] = vec4f(w1, w2, w3, 0.0);
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
   // Test determinism: same position and phase produce same output
-  expectCloseTo([result[0]], [result[2]]);
+  expectCloseTo([result[0]], [result[2]])
   // Test that different phases produce different outputs
-  expect(result[0]).not.toBeCloseTo(result[1], 1);
+  expect(result[0]).not.toBeCloseTo(result[1], 1)
   // Regression: exact output value
-  expectCloseTo([-0.1946], [result[0]]);
-});
+  expectCloseTo([-0.1946], [result[0]])
+})
 
-test("waveletScaled2", async () => {
+test('waveletScaled2', async () => {
   const src = `
-     import lygia::generative::wavelet::waveletScaled2;
+     import dkonasov__lygia::generative::wavelet::waveletScaled2;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -136,19 +136,19 @@ test("waveletScaled2", async () => {
 
        env::results[0] = vec4f(w1, w2, w3, 0.0);
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
   // Test determinism: same input produces same output
-  expectCloseTo([result[0]], [result[1]]);
+  expectCloseTo([result[0]], [result[1]])
   // Test that scaling position changes output
-  expect(result[0]).not.toBeCloseTo(result[2], 1);
+  expect(result[0]).not.toBeCloseTo(result[2], 1)
   // Regression: exact output value
-  expectCloseTo([-0.1114], [result[0]]);
-});
+  expectCloseTo([-0.1114], [result[0]])
+})
 
-test("waveletScaled3 - with custom scale parameter", async () => {
+test('waveletScaled3 - with custom scale parameter', async () => {
   const src = `
-     import lygia::generative::wavelet::waveletScaled3;
+     import dkonasov__lygia::generative::wavelet::waveletScaled3;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -165,19 +165,19 @@ test("waveletScaled3 - with custom scale parameter", async () => {
 
        env::results[0] = vec4f(w1, w2, w3, 0.0);
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
   // Test determinism: same input produces same output
-  expectCloseTo([result[0]], [result[1]]);
+  expectCloseTo([result[0]], [result[1]])
   // Test that different scales produce different outputs
-  expect(result[0]).not.toBeCloseTo(result[2], 1);
+  expect(result[0]).not.toBeCloseTo(result[2], 1)
   // Regression: exact output value
-  expectCloseTo([0.0945], [result[0]]);
-});
+  expectCloseTo([0.0945], [result[0]])
+})
 
-test("wavelet - base function with custom phase and scale", async () => {
+test('wavelet - base function with custom phase and scale', async () => {
   const src = `
-     import lygia::generative::wavelet::wavelet;
+     import dkonasov__lygia::generative::wavelet::wavelet;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -192,14 +192,14 @@ test("wavelet - base function with custom phase and scale", async () => {
 
        env::results[0] = vec4f(w1, w2, w3, w4);
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
   // Test determinism: same input produces same output
-  expectCloseTo([result[0]], [result[1]]);
+  expectCloseTo([result[0]], [result[1]])
   // Test that different phase produces different output
-  expect(result[0]).not.toBeCloseTo(result[2], 1);
+  expect(result[0]).not.toBeCloseTo(result[2], 1)
   // Test that different scale produces different output
-  expect(result[0]).not.toBeCloseTo(result[3], 1);
+  expect(result[0]).not.toBeCloseTo(result[3], 1)
   // Regression: exact output value
-  expectCloseTo([0.1884], [result[0]]);
-});
+  expectCloseTo([0.1884], [result[0]])
+})

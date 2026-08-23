@@ -7,8 +7,8 @@ license:
     - Copyright (c) 2021 Patricio Gonzalez Vivo under Patron License - https://lygia.xyz/license
 */
 
-import lygia::math::aastep::aastep;
-import lygia::math::saturate::saturate;
+import dkonasov__lygia::math::aastep::aastep;
+import dkonasov__lygia::math::saturate::saturate;
 
 fn stroke(x: f32, size: f32, w: f32) -> f32 {
     let d = aastep(size, x + w * 0.5) - aastep(size, x - w * 0.5);

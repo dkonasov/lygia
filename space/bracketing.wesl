@@ -1,5 +1,5 @@
-import lygia::math::consts::PI;
-import lygia::math::consts::TWO_PI;
+import dkonasov__lygia::math::consts::PI;
+import dkonasov__lygia::math::consts::TWO_PI;
 
 /*
 contributors: Huw Bowles ( @hdb1 )

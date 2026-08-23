@@ -9,7 +9,7 @@ license:
     - Copyright (c) 2021 Patricio Gonzalez Vivo under Patron License - https://lygia.xyz/license
 */
 
-import lygia::math::consts::PI;
+import dkonasov__lygia::math::consts::PI;
 
 fn spectral_soft(x: f32) -> vec3f {
     let delta = 0.5;

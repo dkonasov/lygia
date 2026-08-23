@@ -1,4 +1,4 @@
-import lygia::color::blend::{lighten::blendLighten, darken::blendDarken};
+import dkonasov__lygia::color::blend::{lighten::blendLighten, darken::blendDarken};
 
 /*
 contributors: Jamie Owen

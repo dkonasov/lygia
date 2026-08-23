@@ -1,6 +1,6 @@
-import lygia::math::consts::TAU;
-import lygia::space::rotate::rotate;
-import lygia::space::sqTile::sqTile;
+import dkonasov__lygia::math::consts::TAU;
+import dkonasov__lygia::space::rotate::rotate;
+import dkonasov__lygia::space::sqTile::sqTile;
 
 /*
 contributors: Patricio Gonzalez Vivo

@@ -1,5 +1,5 @@
-import lygia::space::sqTile::sqTile;
-import lygia::math::mirror::mirror2;
+import dkonasov__lygia::space::sqTile::sqTile;
+import dkonasov__lygia::math::mirror::mirror2;
 
 /*
 contributors: Patricio Gonzalez Vivo

@@ -13,7 +13,7 @@ license:
     - Copyright (c) 2021 Patricio Gonzalez Vivo under Patron License - https://lygia.xyz/license
 */
 
-import lygia::color::palette::pigments::{TITANIUM_WHITE, YELLOW_OCHRE, CADMIUM_RED, IVORY_BLACK};
+import dkonasov__lygia::color::palette::pigments::{TITANIUM_WHITE, YELLOW_OCHRE, CADMIUM_RED, IVORY_BLACK};
 
 const ZORN_TOTAL: u32 = 4u;
 

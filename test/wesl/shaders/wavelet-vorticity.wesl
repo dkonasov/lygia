@@ -1,4 +1,4 @@
-import lygia::generative::wavelet::wavelet2;
+import dkonasov__lygia::generative::wavelet::wavelet2;
 
 @group(0) @binding(0) var<uniform> uniforms: env::Uniforms;
 

@@ -1,10 +1,10 @@
-import { test } from "vitest";
-import { expectCloseTo, lygiaTestCompute } from "./testUtil.ts";
+import { test } from 'vitest'
+import { expectCloseTo, lygiaTestCompute } from './testUtil.ts'
 
-test("centroid", async () => {
+test('centroid', async () => {
   const src = `
-    import lygia::geometry::aabb::aabb::AABB;
-    import lygia::geometry::aabb::centroid::centroid;
+    import dkonasov__lygia::geometry::aabb::aabb::AABB;
+    import dkonasov__lygia::geometry::aabb::centroid::centroid;
 
     @compute @workgroup_size(1)
     fn foo() {
@@ -14,16 +14,16 @@ test("centroid", async () => {
       let result = centroid(box);
       env::results[0] = result;
     }
-  `;
-  const result = await lygiaTestCompute(src, { elem: "vec3f" });
+  `
+  const result = await lygiaTestCompute(src, { elem: 'vec3f' })
   // Centroid should be at (0, 0, 0)
-  expectCloseTo([0.0, 0.0, 0.0], result);
-});
+  expectCloseTo([0.0, 0.0, 0.0], result)
+})
 
-test("contain", async () => {
+test('contain', async () => {
   const src = `
-    import lygia::geometry::aabb::aabb::AABB;
-    import lygia::geometry::aabb::contain::contain;
+    import dkonasov__lygia::geometry::aabb::aabb::AABB;
+    import dkonasov__lygia::geometry::aabb::contain::contain;
 
     @compute @workgroup_size(1)
     fn foo() {
@@ -36,16 +36,16 @@ test("contain", async () => {
 
       env::results[0] = vec3f(select(0.0, 1.0, inside), select(0.0, 1.0, outside), 0.0);
     }
-  `;
-  const result = await lygiaTestCompute(src, { elem: "vec3f" });
+  `
+  const result = await lygiaTestCompute(src, { elem: 'vec3f' })
   // Inside should be true (1.0), outside should be false (0.0)
-  expectCloseTo([1.0, 0.0, 0.0], result);
-});
+  expectCloseTo([1.0, 0.0, 0.0], result)
+})
 
-test("diagonal", async () => {
+test('diagonal', async () => {
   const src = `
-    import lygia::geometry::aabb::aabb::AABB;
-    import lygia::geometry::aabb::diagonal::diagonal;
+    import dkonasov__lygia::geometry::aabb::aabb::AABB;
+    import dkonasov__lygia::geometry::aabb::diagonal::diagonal;
 
     @compute @workgroup_size(1)
     fn foo() {
@@ -55,16 +55,16 @@ test("diagonal", async () => {
       let result = diagonal(box);
       env::results[0] = result;
     }
-  `;
-  const result = await lygiaTestCompute(src, { elem: "vec3f" });
+  `
+  const result = await lygiaTestCompute(src, { elem: 'vec3f' })
   // Diagonal should be (2, 4, 6)
-  expectCloseTo([2.0, 4.0, 6.0], result);
-});
+  expectCloseTo([2.0, 4.0, 6.0], result)
+})
 
-test("expand with scalar", async () => {
+test('expand with scalar', async () => {
   const src = `
-    import lygia::geometry::aabb::aabb::AABB;
-    import lygia::geometry::aabb::expand::expand;
+    import dkonasov__lygia::geometry::aabb::aabb::AABB;
+    import dkonasov__lygia::geometry::aabb::expand::expand;
 
     @compute @workgroup_size(1)
     fn foo() {
@@ -74,16 +74,16 @@ test("expand with scalar", async () => {
       expand(&box, 0.5);
       env::results[0] = vec3f(box.min.x, box.max.x, 0.0);
     }
-  `;
-  const result = await lygiaTestCompute(src, { elem: "vec3f" });
+  `
+  const result = await lygiaTestCompute(src, { elem: 'vec3f' })
   // Min expands to -1.5, max expands to 1.5
-  expectCloseTo([-1.5, 1.5, 0.0], result);
-});
+  expectCloseTo([-1.5, 1.5, 0.0], result)
+})
 
-test("expand2 with point", async () => {
+test('expand2 with point', async () => {
   const src = `
-    import lygia::geometry::aabb::aabb::AABB;
-    import lygia::geometry::aabb::expand::expand2;
+    import dkonasov__lygia::geometry::aabb::aabb::AABB;
+    import dkonasov__lygia::geometry::aabb::expand::expand2;
 
     @compute @workgroup_size(1)
     fn foo() {
@@ -93,16 +93,16 @@ test("expand2 with point", async () => {
       expand2(&box, vec3f(2.0, -2.0, 0.5));
       env::results[0] = vec3f(box.min.y, box.max.x, 0.0);
     }
-  `;
-  const result = await lygiaTestCompute(src, { elem: "vec3f" });
+  `
+  const result = await lygiaTestCompute(src, { elem: 'vec3f' })
   // Min.y expands to -2.0, max.x expands to 2.0
-  expectCloseTo([-2.0, 2.0, 0.0], result);
-});
+  expectCloseTo([-2.0, 2.0, 0.0], result)
+})
 
-test("expand3 with AABB", async () => {
+test('expand3 with AABB', async () => {
   const src = `
-    import lygia::geometry::aabb::aabb::AABB;
-    import lygia::geometry::aabb::expand::expand3;
+    import dkonasov__lygia::geometry::aabb::aabb::AABB;
+    import dkonasov__lygia::geometry::aabb::expand::expand3;
 
     @compute @workgroup_size(1)
     fn foo() {
@@ -117,16 +117,16 @@ test("expand3 with AABB", async () => {
       expand3(&box1, box2);
       env::results[0] = vec3f(box1.min.y, box1.max.x, box1.max.z);
     }
-  `;
-  const result = await lygiaTestCompute(src, { elem: "vec3f" });
+  `
+  const result = await lygiaTestCompute(src, { elem: 'vec3f' })
   // Min.y expands to -2.0, max.x expands to 2.0, max.z expands to 2.0
-  expectCloseTo([-2.0, 2.0, 2.0], result);
-});
+  expectCloseTo([-2.0, 2.0, 2.0], result)
+})
 
-test("square", async () => {
+test('square', async () => {
   const src = `
-    import lygia::geometry::aabb::aabb::AABB;
-    import lygia::geometry::aabb::square::square;
+    import dkonasov__lygia::geometry::aabb::aabb::AABB;
+    import dkonasov__lygia::geometry::aabb::square::square;
 
     @compute @workgroup_size(1)
     fn foo() {
@@ -137,8 +137,8 @@ test("square", async () => {
       let diag = box.max - box.min;
       env::results[0] = diag;
     }
-  `;
-  const result = await lygiaTestCompute(src, { elem: "vec3f" });
+  `
+  const result = await lygiaTestCompute(src, { elem: 'vec3f' })
   // All dimensions should be equal to the largest dimension (4.0)
-  expectCloseTo([4.0, 4.0, 4.0], result);
-});
+  expectCloseTo([4.0, 4.0, 4.0], result)
+})

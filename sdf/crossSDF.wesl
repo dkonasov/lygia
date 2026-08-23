@@ -1,4 +1,4 @@
-import lygia::sdf::rectSDF::rectSDF;
+import dkonasov__lygia::sdf::rectSDF::rectSDF;
 
 /*
 contributors: Patricio Gonzalez Vivo

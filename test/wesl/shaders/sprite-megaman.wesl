@@ -1,5 +1,5 @@
-import lygia::space::ratio::ratio;
-import lygia::animation::spriteLoop::spriteLoop;
+import dkonasov__lygia::space::ratio::ratio;
+import dkonasov__lygia::animation::spriteLoop::spriteLoop;
 
 @group(0) @binding(0) var<uniform> uniforms: env::Uniforms;
 @group(0) @binding(1) var sprite_tex: texture_2d<f32>;

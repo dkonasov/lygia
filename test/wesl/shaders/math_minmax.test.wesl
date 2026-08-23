@@ -1,10 +1,10 @@
 // Native WESL tests for mmax/mmin functions
 
 import wgsl_test::expectNearVec4;
-import lygia::math::mmax::mmax2;
-import lygia::math::mmax::mmax3;
-import lygia::math::mmin::mmin2;
-import lygia::math::mmin::mmin3;
+import dkonasov__lygia::math::mmax::mmax2;
+import dkonasov__lygia::math::mmax::mmax3;
+import dkonasov__lygia::math::mmin::mmin2;
+import dkonasov__lygia::math::mmin::mmin3;
 
 @test
 fn mmax2Cases() {

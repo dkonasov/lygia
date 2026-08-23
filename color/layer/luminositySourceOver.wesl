@@ -1,5 +1,5 @@
-import lygia::color::blend::luminosity::blendLuminosity;
-import lygia::color::composite::sourceOver::{compositeSourceOver, compositeSourceOver3};
+import dkonasov__lygia::color::blend::luminosity::blendLuminosity;
+import dkonasov__lygia::color::composite::sourceOver::{compositeSourceOver, compositeSourceOver3};
 
 /*
 contributors: Patricio Gonzalez Vivo, Anton Marini

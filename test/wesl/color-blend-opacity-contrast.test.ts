@@ -1,9 +1,9 @@
-import { test } from "vitest";
-import { expectCloseTo, lygiaTestCompute } from "./testUtil.ts";
+import { test } from 'vitest'
+import { expectCloseTo, lygiaTestCompute } from './testUtil.ts'
 
-test("blendOverlay3Opacity", async () => {
+test('blendOverlay3Opacity', async () => {
   const src = `
-     import lygia::color::blend::overlay::blendOverlay3Opacity;
+     import dkonasov__lygia::color::blend::overlay::blendOverlay3Opacity;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -12,16 +12,16 @@ test("blendOverlay3Opacity", async () => {
        let result = blendOverlay3Opacity(base, blend, 0.5);
        env::results[0] = result;
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec3f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec3f' })
   // Full blend: [0.24, 0.6, 0.88]
   // At 0.5: [0.24*0.5+0.4*0.5, 0.6*0.5+0.6*0.5, 0.88*0.5+0.8*0.5]
-  expectCloseTo([0.32, 0.6, 0.84], result);
-});
+  expectCloseTo([0.32, 0.6, 0.84], result)
+})
 
-test("blendSoftLight3Opacity", async () => {
+test('blendSoftLight3Opacity', async () => {
   const src = `
-     import lygia::color::blend::softLight::blendSoftLight3Opacity;
+     import dkonasov__lygia::color::blend::softLight::blendSoftLight3Opacity;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -30,16 +30,16 @@ test("blendSoftLight3Opacity", async () => {
        let result = blendSoftLight3Opacity(base, blend, 0.5);
        env::results[0] = result;
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec3f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec3f' })
   // Full blend: [0.4, 0.6, 0.493]
   // At 0.5: [0.4*0.5+0.5*0.5, 0.6*0.5+0.6*0.5, 0.493*0.5+0.4*0.5]
-  expectCloseTo([0.45, 0.6, 0.447], result, 0.01);
-});
+  expectCloseTo([0.45, 0.6, 0.447], result, 0.01)
+})
 
-test("blendHardLight3Opacity", async () => {
+test('blendHardLight3Opacity', async () => {
   const src = `
-     import lygia::color::blend::hardLight::blendHardLight3Opacity;
+     import dkonasov__lygia::color::blend::hardLight::blendHardLight3Opacity;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -48,16 +48,16 @@ test("blendHardLight3Opacity", async () => {
        let result = blendHardLight3Opacity(base, blend, 0.5);
        env::results[0] = result;
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec3f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec3f' })
   // Full blend: [0.24, 0.6, 0.88]
   // At 0.5: [0.24*0.5+0.4*0.5, 0.6*0.5+0.6*0.5, 0.88*0.5+0.8*0.5]
-  expectCloseTo([0.32, 0.6, 0.84], result);
-});
+  expectCloseTo([0.32, 0.6, 0.84], result)
+})
 
-test("blendVividLight3Opacity", async () => {
+test('blendVividLight3Opacity', async () => {
   const src = `
-     import lygia::color::blend::vividLight::blendVividLight3Opacity;
+     import dkonasov__lygia::color::blend::vividLight::blendVividLight3Opacity;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -66,16 +66,16 @@ test("blendVividLight3Opacity", async () => {
        let result = blendVividLight3Opacity(base, blend, 0.5);
        env::results[0] = result;
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec3f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec3f' })
   // Full blend: [0.167, 0.6, 0.667]
   // At 0.5: [0.167*0.5+0.5*0.5, 0.6*0.5+0.6*0.5, 0.667*0.5+0.4*0.5]
-  expectCloseTo([0.334, 0.6, 0.534], result, 0.01);
-});
+  expectCloseTo([0.334, 0.6, 0.534], result, 0.01)
+})
 
-test("blendPinLight3Opacity", async () => {
+test('blendPinLight3Opacity', async () => {
   const src = `
-     import lygia::color::blend::pinLight::blendPinLight3Opacity;
+     import dkonasov__lygia::color::blend::pinLight::blendPinLight3Opacity;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -85,16 +85,16 @@ test("blendPinLight3Opacity", async () => {
        let result = blendPinLight3Opacity(base, blend, 0.5);
        env::results[0] = result;
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec3f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec3f' })
   // Full blend: [0.2, 0.8, 0.5] (from blendPinLight3 test above)
   // At 0.5: [0.2*0.5+0.3*0.5, 0.8*0.5+0.7*0.5, 0.5*0.5+0.5*0.5]
-  expectCloseTo([0.25, 0.75, 0.5], result);
-});
+  expectCloseTo([0.25, 0.75, 0.5], result)
+})
 
-test("blendLinearLight3Opacity", async () => {
+test('blendLinearLight3Opacity', async () => {
   const src = `
-     import lygia::color::blend::linearLight::blendLinearLight3Opacity;
+     import dkonasov__lygia::color::blend::linearLight::blendLinearLight3Opacity;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -103,16 +103,16 @@ test("blendLinearLight3Opacity", async () => {
        let result = blendLinearLight3Opacity(base, blend, 0.5);
        env::results[0] = result;
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec3f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec3f' })
   // Full blend: [0.0, 0.5, 1.0]
   // At 0.5: [0.0*0.5+0.4*0.5, 0.5*0.5+0.5*0.5, 1.0*0.5+0.6*0.5]
-  expectCloseTo([0.2, 0.5, 0.8], result);
-});
+  expectCloseTo([0.2, 0.5, 0.8], result)
+})
 
-test("blendHardMix3Opacity", async () => {
+test('blendHardMix3Opacity', async () => {
   const src = `
-     import lygia::color::blend::hardMix::blendHardMix3Opacity;
+     import dkonasov__lygia::color::blend::hardMix::blendHardMix3Opacity;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -121,9 +121,9 @@ test("blendHardMix3Opacity", async () => {
        let result = blendHardMix3Opacity(base, blend, 0.5);
        env::results[0] = result;
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec3f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec3f' })
   // Full blend: [0.0, 1.0, 1.0]
   // At 0.5: [0.0*0.5+0.4*0.5, 1.0*0.5+0.6*0.5, 1.0*0.5+0.8*0.5]
-  expectCloseTo([0.2, 0.8, 0.9], result);
-});
+  expectCloseTo([0.2, 0.8, 0.9], result)
+})

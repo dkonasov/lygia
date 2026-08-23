@@ -1,6 +1,6 @@
 @if(CENTER_2D)
 import constants::CENTER_2D;
-import lygia::math::consts::TAU;
+import dkonasov__lygia::math::consts::TAU;
 
 /*
 contributors: Patricio Gonzalez Vivo

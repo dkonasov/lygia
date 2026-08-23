@@ -7,7 +7,7 @@ examples:
 license: MIT License Copyright (c) 2020 Martijn Steinrucken
 */
 
-import lygia::math::consts::PI;
+import dkonasov__lygia::math::consts::PI;
 
 fn spectral(x: f32) -> vec3f {
     return (vec3f( 1.220023e0,-1.933277e0, 1.623776e0) +

@@ -1,11 +1,11 @@
-import { test } from "vitest";
-import { expectCloseTo, lygiaTestCompute } from "./testUtil.ts";
+import { test } from 'vitest'
+import { expectCloseTo, lygiaTestCompute } from './testUtil.ts'
 
 // decimateNormal kept inline - uses > and < comparisons not available in wgsl_test
-test("decimateNormal", async () => {
+test('decimateNormal', async () => {
   const src = `
-    import lygia::math::consts::INV_SQRT2;
-    import lygia::space::decimateNormal::decimateNormal;
+    import dkonasov__lygia::math::consts::INV_SQRT2;
+    import dkonasov__lygia::space::decimateNormal::decimateNormal;
     @compute @workgroup_size(1)
     fn foo() {
       // Test quantization with precision 4.0 (0.25 steps)
@@ -33,27 +33,27 @@ test("decimateNormal", async () => {
       env::results[2] = diff_nearby;  // Expected: <0.2 (nearby normals quantize similarly)
       env::results[3] = diff_distant;  // Expected: >0.3 (distant normals differ)
     }
-  `;
-  const result = await lygiaTestCompute(src);
-  const r = result as number[];
+  `
+  const result = await lygiaTestCompute(src)
+  const r = result as number[]
 
   // Test 1: Known expected output for 45° normal with precision 4.0
-  expectCloseTo([0.72986], [r[0]]);
+  expectCloseTo([0.72986], [r[0]])
 
   // Verify unit length
-  expectCloseTo([1.0], [r[1]]);
+  expectCloseTo([1.0], [r[1]])
 
   // d1 and d2 should be close (nearby normals quantize similarly)
   if (r[2] > 0.2) {
     throw new Error(
       `Expected nearby normals to quantize similarly, but difference was ${r[2]}`,
-    );
+    )
   }
 
   // d3 should differ significantly (distant normal, different quantization bin)
   if (r[3] < 0.3) {
     throw new Error(
       `Expected distant normal to quantize differently, but difference was only ${r[3]}`,
-    );
+    )
   }
-});
+})

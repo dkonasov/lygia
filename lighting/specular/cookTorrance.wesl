@@ -1,7 +1,7 @@
-import lygia::lighting::common::ggx::GGXPrecise;
-import lygia::lighting::common::smithGGXCorrelated::{smithGGXCorrelated, smithGGXCorrelated_Fast};
-import lygia::math::saturate::saturate;
-import lygia::lighting::fresnel::fresnel;
+import dkonasov__lygia::lighting::common::ggx::GGXPrecise;
+import dkonasov__lygia::lighting::common::smithGGXCorrelated::{smithGGXCorrelated, smithGGXCorrelated_Fast};
+import dkonasov__lygia::math::saturate::saturate;
+import dkonasov__lygia::lighting::fresnel::fresnel;
 
 fn specularCookTorrance(L: vec3f, N: vec3f, H: vec3f, NoV: f32, NoL: f32, NoH: f32, linearRoughness: f32, specularColor: vec3f) -> vec3f {
     let LoH = saturate(dot(L, H));

@@ -1,4 +1,4 @@
-import lygia::math::consts::TWO_PI;
+import dkonasov__lygia::math::consts::TWO_PI;
 
 /*
 contributors: [Mario Carrillo, Daniel Ilett]

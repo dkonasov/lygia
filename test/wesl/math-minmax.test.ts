@@ -1,9 +1,9 @@
-import { test } from "vitest";
-import { expectCloseTo, lygiaTestCompute } from "./testUtil.ts";
+import { test } from 'vitest'
+import { expectCloseTo, lygiaTestCompute } from './testUtil.ts'
 
-test("mmax2", async () => {
+test('mmax2', async () => {
   const src = `
-    import lygia::math::mmax::mmax2;
+    import dkonasov__lygia::math::mmax::mmax2;
     @compute @workgroup_size(1)
     fn foo() {
       // Test multiple cases: positive, negative, mixed signs, equal values
@@ -14,14 +14,14 @@ test("mmax2", async () => {
         mmax2(vec2f(-3.0, 4.0))    // Mixed signs
       );
     }
-  `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
-  expectCloseTo([7.0, 9.0, -2.0, 4.0], result);
-});
+  `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
+  expectCloseTo([7.0, 9.0, -2.0, 4.0], result)
+})
 
-test("mmax3", async () => {
+test('mmax3', async () => {
   const src = `
-    import lygia::math::mmax::mmax3;
+    import dkonasov__lygia::math::mmax::mmax3;
     @compute @workgroup_size(1)
     fn foo() {
       // Test multiple cases with max in different positions
@@ -32,14 +32,14 @@ test("mmax3", async () => {
         mmax3(vec3f(-6.0, -2.0, -4.0)) // Negative values
       );
     }
-  `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
-  expectCloseTo([7.0, 9.0, 8.0, -2.0], result);
-});
+  `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
+  expectCloseTo([7.0, 9.0, 8.0, -2.0], result)
+})
 
-test("mmin2", async () => {
+test('mmin2', async () => {
   const src = `
-    import lygia::math::mmin::mmin2;
+    import dkonasov__lygia::math::mmin::mmin2;
     @compute @workgroup_size(1)
     fn foo() {
       // Test multiple cases: min in different positions, negative, mixed
@@ -50,14 +50,14 @@ test("mmin2", async () => {
         mmin2(vec2f(-3.0, 4.0))    // Mixed signs
       );
     }
-  `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
-  expectCloseTo([3.0, 2.0, -5.0, -3.0], result);
-});
+  `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
+  expectCloseTo([3.0, 2.0, -5.0, -3.0], result)
+})
 
-test("mmin3", async () => {
+test('mmin3', async () => {
   const src = `
-    import lygia::math::mmin::mmin3;
+    import dkonasov__lygia::math::mmin::mmin3;
     @compute @workgroup_size(1)
     fn foo() {
       // Test multiple cases with min in different positions
@@ -68,7 +68,7 @@ test("mmin3", async () => {
         mmin3(vec3f(-2.0, 5.0, -8.0))  // Mixed signs
       );
     }
-  `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
-  expectCloseTo([3.0, 2.0, 1.0, -8.0], result);
-});
+  `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
+  expectCloseTo([3.0, 2.0, 1.0, -8.0], result)
+})

@@ -1,4 +1,4 @@
-import lygia::math::nyquist::nyquist;
+import dkonasov__lygia::math::nyquist::nyquist;
 
 /*
 contributors: Shadi El Hajj

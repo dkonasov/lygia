@@ -7,7 +7,7 @@ license:
     - Copyright (c) 2021 Patricio Gonzalez Vivo under Patron License - https://lygia.xyz/license
 */
 
-import lygia::math::saturate::{saturate, saturate2, saturate3, saturate4};
+import dkonasov__lygia::math::saturate::{saturate, saturate2, saturate3, saturate4};
 
 // 2-arg versions (with threshold k)
 fn bump(x: f32, k: f32) -> f32 { return saturate((1.0 - x * x) - k); }

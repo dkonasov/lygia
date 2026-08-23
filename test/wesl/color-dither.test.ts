@@ -1,23 +1,23 @@
-import { afterAll, beforeAll, test } from "vitest";
-import { imageMatcher } from "vitest-image-snapshot";
-import { destroySharedDevice, getGPUDevice } from "wgsl-test";
-import { expectCloseTo, expectDither, lygiaTestCompute } from "./testUtil.ts";
+import { afterAll, beforeAll, test } from 'vitest'
+import { imageMatcher } from 'vitest-image-snapshot'
+import { destroySharedDevice, getGPUDevice } from 'wgsl-test'
+import { expectCloseTo, expectDither, lygiaTestCompute } from './testUtil.ts'
 
-imageMatcher();
+imageMatcher()
 
 beforeAll(async () => {
-  await getGPUDevice();
-});
+  await getGPUDevice()
+})
 
 afterAll(() => {
-  destroySharedDevice();
-});
+  destroySharedDevice()
+})
 
-test("ditherBayer3 - gradient with Bayer pattern", async () => {
+test('ditherBayer3 - gradient with Bayer pattern', async () => {
   await expectDither(
     `
-    import lygia::color::dither::bayer::ditherBayer3Precision;
-    import lygia::test::wesl_util::sampleQuantized::{sampleQuantized3, sampleOriginal3};
+    import dkonasov__lygia::color::dither::bayer::ditherBayer3Precision;
+    import dkonasov__lygia::test::wesl_util::sampleQuantized::{sampleQuantized3, sampleOriginal3};
 
     @group(0) @binding(0) var<uniform> u: env::Uniforms;
 
@@ -36,15 +36,15 @@ test("ditherBayer3 - gradient with Bayer pattern", async () => {
       return vec4f(result, 1.0);
     }
   `,
-    "dither-bayer3-gradient",
-  );
-});
+    'dither-bayer3-gradient',
+  )
+})
 
-test("ditherVlachos3 - gradient with Vlachos noise", async () => {
+test('ditherVlachos3 - gradient with Vlachos noise', async () => {
   await expectDither(
     `
-    import lygia::color::dither::vlachos::ditherVlachos3Precision;
-    import lygia::test::wesl_util::sampleQuantized::{sampleQuantized3, sampleOriginal3};
+    import dkonasov__lygia::color::dither::vlachos::ditherVlachos3Precision;
+    import dkonasov__lygia::test::wesl_util::sampleQuantized::{sampleQuantized3, sampleOriginal3};
 
     @group(0) @binding(0) var<uniform> u: env::Uniforms;
 
@@ -63,15 +63,15 @@ test("ditherVlachos3 - gradient with Vlachos noise", async () => {
       return vec4f(result, 1.0);
     }
   `,
-    "dither-vlachos3-gradient",
-  );
-});
+    'dither-vlachos3-gradient',
+  )
+})
 
-test("ditherBlueNoise3 - gradient with blue noise pattern", async () => {
+test('ditherBlueNoise3 - gradient with blue noise pattern', async () => {
   await expectDither(
     `
-    import lygia::color::dither::blueNoise::ditherBlueNoise3Precision;
-    import lygia::test::wesl_util::sampleQuantized::{sampleQuantized3, sampleOriginal3};
+    import dkonasov__lygia::color::dither::blueNoise::ditherBlueNoise3Precision;
+    import dkonasov__lygia::test::wesl_util::sampleQuantized::{sampleQuantized3, sampleOriginal3};
 
     @group(0) @binding(0) var<uniform> u: env::Uniforms;
 
@@ -90,18 +90,18 @@ test("ditherBlueNoise3 - gradient with blue noise pattern", async () => {
       return vec4f(result, 1.0);
     }
   `,
-    "dither-bluenoise3-gradient",
+    'dither-bluenoise3-gradient',
     { allowedPixelRatio: 0.05 }, // blue noise dither pattern varies across GPUs
-  );
-});
+  )
+})
 
 // =============================================================================
 // Unit Tests
 // =============================================================================
 
-test("ditherBayer - all wrapper functions", async () => {
+test('ditherBayer - all wrapper functions', async () => {
   const src = `
-     import lygia::color::dither::bayer::{
+     import dkonasov__lygia::color::dither::bayer::{
        ditherBayer,
        ditherBayerPrecision,
        ditherBayer3,
@@ -135,25 +135,25 @@ test("ditherBayer - all wrapper functions", async () => {
        env::results[2] = vec4f(dithered3Custom, 0.0);
        env::results[3] = dithered4;
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f", size: 4 });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f', size: 4 })
 
   // Scalar with precision=16: 0.53 quantized to 16 levels
-  expectCloseTo([0.5, 0.0, 0.0, 0.0], result.slice(0, 4));
+  expectCloseTo([0.5, 0.0, 0.0, 0.0], result.slice(0, 4))
 
   // Vec3 with default precision=256 (rounds down for these values)
-  expectCloseTo([0.5273, 0.6172, 0.4688, 0.0], result.slice(4, 8));
+  expectCloseTo([0.5273, 0.6172, 0.4688, 0.0], result.slice(4, 8))
 
   // Vec3 with precision=16
-  expectCloseTo([0.5, 0.625, 0.4375, 0.0], result.slice(8, 12));
+  expectCloseTo([0.5, 0.625, 0.4375, 0.0], result.slice(8, 12))
 
   // Vec4 with precision=256 (should preserve alpha=0.85)
-  expectCloseTo([0.5273, 0.6172, 0.4688, 0.85], result.slice(12, 16));
-});
+  expectCloseTo([0.5273, 0.6172, 0.4688, 0.85], result.slice(12, 16))
+})
 
-test("ditherVlachos - all wrapper functions", async () => {
+test('ditherVlachos - all wrapper functions', async () => {
   const src = `
-     import lygia::color::dither::vlachos::{
+     import dkonasov__lygia::color::dither::vlachos::{
        ditherVlachos3,
        ditherVlachos3Precision,
        ditherVlachos4
@@ -180,24 +180,24 @@ test("ditherVlachos - all wrapper functions", async () => {
        env::results[1] = vec4f(dithered3Custom, 0.0);
        env::results[2] = dithered4;
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f", size: 3 });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f', size: 3 })
 
   // Vec3 with default precision=256 (adds noise then quantizes)
   // Values should be close to input (within ±1/256 due to noise)
-  expectCloseTo([0.5273, 0.6211, 0.4688, 0.0], result.slice(0, 4), 0.004);
+  expectCloseTo([0.5273, 0.6211, 0.4688, 0.0], result.slice(0, 4), 0.004)
 
   // Vec3 with precision=16 (larger quantization steps)
-  expectCloseTo([0.5, 0.625, 0.4375, 0.0], result.slice(4, 8), 0.07);
+  expectCloseTo([0.5, 0.625, 0.4375, 0.0], result.slice(4, 8), 0.07)
 
   // Vec4 with precision=256 (should preserve alpha=0.85)
-  expectCloseTo([0.5273, 0.6211, 0.4688], result.slice(8, 11), 0.004);
-  expectCloseTo([0.85], [result[11]]);
-});
+  expectCloseTo([0.5273, 0.6211, 0.4688], result.slice(8, 11), 0.004)
+  expectCloseTo([0.85], [result[11]])
+})
 
-test("ditherBlueNoise - all wrapper functions", async () => {
+test('ditherBlueNoise - all wrapper functions', async () => {
   const src = `
-     import lygia::color::dither::blueNoise::{
+     import dkonasov__lygia::color::dither::blueNoise::{
        ditherBlueNoise1,
        ditherBlueNoise3,
        ditherBlueNoise3Precision,
@@ -230,18 +230,18 @@ test("ditherBlueNoise - all wrapper functions", async () => {
        env::results[2] = vec4f(dithered3Custom, 0.0);
        env::results[3] = dithered4;
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f", size: 4 });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f', size: 4 })
 
   // Scalar with precision=256: 0.53 quantized
-  expectCloseTo([0.5312], result.slice(0, 1));
+  expectCloseTo([0.5312], result.slice(0, 1))
 
   // Vec3 with default precision=256
-  expectCloseTo([0.5312, 0.6211, 0.4727, 0.0], result.slice(4, 8));
+  expectCloseTo([0.5312, 0.6211, 0.4727, 0.0], result.slice(4, 8))
 
   // Vec3 with precision=16
-  expectCloseTo([0.5625, 0.625, 0.5, 0.0], result.slice(8, 12));
+  expectCloseTo([0.5625, 0.625, 0.5, 0.0], result.slice(8, 12))
 
   // Vec4 with precision=256 (should preserve alpha=0.85)
-  expectCloseTo([0.5312, 0.6211, 0.4727, 0.85], result.slice(12, 16));
-});
+  expectCloseTo([0.5312, 0.6211, 0.4727, 0.85], result.slice(12, 16))
+})

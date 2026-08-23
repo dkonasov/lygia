@@ -7,7 +7,7 @@ license:
     - Copyright (c) 2021 Patricio Gonzalez Vivo under Patron License - https://lygia.xyz/license
 */
 
-import lygia::math::saturate::saturate3;
+import dkonasov__lygia::math::saturate::saturate3;
 
 // LATER make this a @param const when WESL supports that
 const SRGB_EPSILON: f32 = 1e-10;

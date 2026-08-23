@@ -1,4 +1,4 @@
-import lygia::sdf::circleSDF::circleSDF;
+import dkonasov__lygia::sdf::circleSDF::circleSDF;
 
 /*
 contributors: Patricio Gonzalez Vivo

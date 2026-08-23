@@ -1,5 +1,5 @@
-import lygia::math::rotate2d::rotate2d;
-import lygia::math::rotate4d::rotate4d;
+import dkonasov__lygia::math::rotate2d::rotate2d;
+import dkonasov__lygia::math::rotate4d::rotate4d;
 
 @if(CENTER_2D)
 import constants::CENTER_2D;

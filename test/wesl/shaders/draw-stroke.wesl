@@ -1,5 +1,5 @@
-import lygia::draw::stroke::{stroke, strokeEdge};
-import lygia::math::consts::PI;
+import dkonasov__lygia::draw::stroke::{stroke, strokeEdge};
+import dkonasov__lygia::math::consts::PI;
 
 @group(0) @binding(0) var<uniform> uniforms: env::Uniforms;
 

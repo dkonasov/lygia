@@ -1,7 +1,7 @@
 @if(CENTER_2D)
 import constants::CENTER_2D;
-import lygia::math::consts::TAU;
-import lygia::space::scale::scale2_f;
+import dkonasov__lygia::math::consts::TAU;
+import dkonasov__lygia::space::scale::scale2_f;
 
 /*
 contributors: Patricio Gonzalez Vivo

@@ -1,8 +1,8 @@
 // Native WESL tests for dodge blend modes
 
 import wgsl_test::{expectNear, expectNearVec3};
-import lygia::color::blend::colorDodge::{blendColorDodge, blendColorDodge3};
-import lygia::color::blend::linearDodge::{blendLinearDodge, blendLinearDodge3};
+import dkonasov__lygia::color::blend::colorDodge::{blendColorDodge, blendColorDodge3};
+import dkonasov__lygia::color::blend::linearDodge::{blendLinearDodge, blendLinearDodge3};
 
 // vec3 blend tests
 

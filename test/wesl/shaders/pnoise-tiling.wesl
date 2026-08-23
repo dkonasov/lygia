@@ -1,4 +1,4 @@
-import lygia::generative::pnoise::pnoise2;
+import dkonasov__lygia::generative::pnoise::pnoise2;
 
 @group(0) @binding(0) var<uniform> uniforms: env::Uniforms;
 

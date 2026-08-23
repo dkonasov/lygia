@@ -1,10 +1,10 @@
 // Native WESL tests for named color palettes (zorn, macbeth, spyder)
 
 import wgsl_test::expectNearVec3;
-import lygia::color::palette::zorn::zorn;
-import lygia::color::palette::macbeth::{macbeth, DARK_SKIN, BLUE_SKY};
-import lygia::color::palette::spyder::{spyder, spyderA, spyderB, LOW_SAT_RED, PRIMARY_YELLOW};
-import lygia::color::palette::pigments::{TITANIUM_WHITE, CADMIUM_RED};
+import dkonasov__lygia::color::palette::zorn::zorn;
+import dkonasov__lygia::color::palette::macbeth::{macbeth, DARK_SKIN, BLUE_SKY};
+import dkonasov__lygia::color::palette::spyder::{spyder, spyderA, spyderB, LOW_SAT_RED, PRIMARY_YELLOW};
+import dkonasov__lygia::color::palette::pigments::{TITANIUM_WHITE, CADMIUM_RED};
 
 // ============ zorn palette ============
 // 4-color limited palette: Titanium White, Yellow Ochre, Cadmium Red, Ivory Black

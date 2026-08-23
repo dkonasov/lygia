@@ -1,16 +1,16 @@
-import { expect, test } from "vitest";
+import { expect, test } from 'vitest'
 import {
   expectCloseTo,
   lygiaTestCompute,
   testDistribution,
-} from "./testUtil.ts";
+} from './testUtil.ts'
 
-test("cnoise2", async () => {
-  const pairCount = 256;
-  const sampleCount = pairCount * 2;
+test('cnoise2', async () => {
+  const pairCount = 256
+  const sampleCount = pairCount * 2
   const src = `
      import constants::PAIR_COUNT;
-     import lygia::generative::cnoise::cnoise2;
+     import dkonasov__lygia::generative::cnoise::cnoise2;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -23,33 +23,33 @@ test("cnoise2", async () => {
          env::results[i * 2 + 1] = cnoise2(vec2f(x + 0.01, y + 0.01));
        }
      }
-   `;
+   `
   const result = await testDistribution(src, sampleCount, {
     constants: { PAIR_COUNT: pairCount },
-  });
+  })
 
   // Continuity: check all 256 pairs
-  let maxDiff = 0;
+  let maxDiff = 0
   for (let i = 0; i < pairCount; i++) {
-    const diff = Math.abs(result[i * 2 + 1] - result[i * 2]);
-    maxDiff = Math.max(maxDiff, diff);
+    const diff = Math.abs(result[i * 2 + 1] - result[i * 2])
+    maxDiff = Math.max(maxDiff, diff)
   }
-  expect(maxDiff).toBeLessThan(0.1);
+  expect(maxDiff).toBeLessThan(0.1)
 
   // Range: all values in [-1, 1]
-  expect(Math.min(...result)).toBeGreaterThanOrEqual(-1.0);
-  expect(Math.max(...result)).toBeLessThanOrEqual(1.0);
+  expect(Math.min(...result)).toBeGreaterThanOrEqual(-1.0)
+  expect(Math.max(...result)).toBeLessThanOrEqual(1.0)
 
   // Regression: result[0] is naturally at (0.5, 0.5)
-  expectCloseTo([-0.4915], [result[0]]);
-});
+  expectCloseTo([-0.4915], [result[0]])
+})
 
-test("cnoise3", async () => {
-  const pairCount = 256;
-  const sampleCount = pairCount * 2;
+test('cnoise3', async () => {
+  const pairCount = 256
+  const sampleCount = pairCount * 2
   const src = `
      import constants::PAIR_COUNT;
-     import lygia::generative::cnoise::cnoise3;
+     import dkonasov__lygia::generative::cnoise::cnoise3;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -63,33 +63,33 @@ test("cnoise3", async () => {
          env::results[i * 2 + 1] = cnoise3(vec3f(x + 0.01, y + 0.01, z + 0.01));
        }
      }
-   `;
+   `
   const result = await testDistribution(src, sampleCount, {
     constants: { PAIR_COUNT: pairCount },
-  });
+  })
 
   // Continuity: check all 256 pairs
-  let maxDiff = 0;
+  let maxDiff = 0
   for (let i = 0; i < pairCount; i++) {
-    const diff = Math.abs(result[i * 2 + 1] - result[i * 2]);
-    maxDiff = Math.max(maxDiff, diff);
+    const diff = Math.abs(result[i * 2 + 1] - result[i * 2])
+    maxDiff = Math.max(maxDiff, diff)
   }
-  expect(maxDiff).toBeLessThan(0.1);
+  expect(maxDiff).toBeLessThan(0.1)
 
   // Range: all values in [-1, 1]
-  expect(Math.min(...result)).toBeGreaterThanOrEqual(-1.0);
-  expect(Math.max(...result)).toBeLessThanOrEqual(1.0);
+  expect(Math.min(...result)).toBeGreaterThanOrEqual(-1.0)
+  expect(Math.max(...result)).toBeLessThanOrEqual(1.0)
 
   // Regression: result[0] is naturally at (0.5, 0.5, 0.5)
-  expectCloseTo([-0.3962], [result[0]]);
-});
+  expectCloseTo([-0.3962], [result[0]])
+})
 
-test("cnoise4", async () => {
-  const pairCount = 256;
-  const sampleCount = pairCount * 2;
+test('cnoise4', async () => {
+  const pairCount = 256
+  const sampleCount = pairCount * 2
   const src = `
      import constants::PAIR_COUNT;
-     import lygia::generative::cnoise::cnoise4;
+     import dkonasov__lygia::generative::cnoise::cnoise4;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -104,33 +104,33 @@ test("cnoise4", async () => {
          env::results[i * 2 + 1] = cnoise4(vec4f(x + 0.01, y + 0.01, z + 0.01, w + 0.01));
        }
      }
-   `;
+   `
   const result = await testDistribution(src, sampleCount, {
     constants: { PAIR_COUNT: pairCount },
-  });
+  })
 
   // Continuity: check all 256 pairs
-  let maxDiff = 0;
+  let maxDiff = 0
   for (let i = 0; i < pairCount; i++) {
-    const diff = Math.abs(result[i * 2 + 1] - result[i * 2]);
-    maxDiff = Math.max(maxDiff, diff);
+    const diff = Math.abs(result[i * 2 + 1] - result[i * 2])
+    maxDiff = Math.max(maxDiff, diff)
   }
-  expect(maxDiff).toBeLessThan(0.1);
+  expect(maxDiff).toBeLessThan(0.1)
 
   // Range: all values in [-1, 1]
-  expect(Math.min(...result)).toBeGreaterThanOrEqual(-1.0);
-  expect(Math.max(...result)).toBeLessThanOrEqual(1.0);
+  expect(Math.min(...result)).toBeGreaterThanOrEqual(-1.0)
+  expect(Math.max(...result)).toBeLessThanOrEqual(1.0)
 
   // Regression: result[0] is naturally at (0.5, 0.5, 0.5, 0.5)
-  expectCloseTo([0.0203], [result[0]]);
-});
+  expectCloseTo([0.0203], [result[0]])
+})
 
-test("snoise2", async () => {
-  const pairCount = 256;
-  const sampleCount = pairCount * 2;
+test('snoise2', async () => {
+  const pairCount = 256
+  const sampleCount = pairCount * 2
   const src = `
      import constants::PAIR_COUNT;
-     import lygia::generative::snoise::snoise2;
+     import dkonasov__lygia::generative::snoise::snoise2;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -143,33 +143,33 @@ test("snoise2", async () => {
          env::results[i * 2 + 1] = snoise2(vec2f(x + 0.01, y + 0.01));
        }
      }
-   `;
+   `
   const result = await testDistribution(src, sampleCount, {
     constants: { PAIR_COUNT: pairCount },
-  });
+  })
 
   // Continuity: check all 256 pairs
-  let maxDiff = 0;
+  let maxDiff = 0
   for (let i = 0; i < pairCount; i++) {
-    const diff = Math.abs(result[i * 2 + 1] - result[i * 2]);
-    maxDiff = Math.max(maxDiff, diff);
+    const diff = Math.abs(result[i * 2 + 1] - result[i * 2])
+    maxDiff = Math.max(maxDiff, diff)
   }
-  expect(maxDiff).toBeLessThan(0.2);
+  expect(maxDiff).toBeLessThan(0.2)
 
   // Range: all values in approximately [-1, 1] (allow small overshoot for simplex noise)
-  expect(Math.min(...result)).toBeGreaterThanOrEqual(-1.1);
-  expect(Math.max(...result)).toBeLessThanOrEqual(1.1);
+  expect(Math.min(...result)).toBeGreaterThanOrEqual(-1.1)
+  expect(Math.max(...result)).toBeLessThanOrEqual(1.1)
 
   // Regression: result[0] is naturally at (1.0, 2.0)
-  expectCloseTo([0.3683], [result[0]]);
-});
+  expectCloseTo([0.3683], [result[0]])
+})
 
-test("snoise3", async () => {
-  const pairCount = 256;
-  const sampleCount = pairCount * 2;
+test('snoise3', async () => {
+  const pairCount = 256
+  const sampleCount = pairCount * 2
   const src = `
      import constants::PAIR_COUNT;
-     import lygia::generative::snoise::snoise3;
+     import dkonasov__lygia::generative::snoise::snoise3;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -183,33 +183,33 @@ test("snoise3", async () => {
          env::results[i * 2 + 1] = snoise3(vec3f(x + 0.01, y + 0.01, z + 0.01));
        }
      }
-   `;
+   `
   const result = await testDistribution(src, sampleCount, {
     constants: { PAIR_COUNT: pairCount },
-  });
+  })
 
   // Continuity: check all 256 pairs
-  let maxDiff = 0;
+  let maxDiff = 0
   for (let i = 0; i < pairCount; i++) {
-    const diff = Math.abs(result[i * 2 + 1] - result[i * 2]);
-    maxDiff = Math.max(maxDiff, diff);
+    const diff = Math.abs(result[i * 2 + 1] - result[i * 2])
+    maxDiff = Math.max(maxDiff, diff)
   }
-  expect(maxDiff).toBeLessThan(0.35);
+  expect(maxDiff).toBeLessThan(0.35)
 
   // Range: all values in approximately [-1, 1] (allow small overshoot for simplex noise)
-  expect(Math.min(...result)).toBeGreaterThanOrEqual(-1.1);
-  expect(Math.max(...result)).toBeLessThanOrEqual(1.1);
+  expect(Math.min(...result)).toBeGreaterThanOrEqual(-1.1)
+  expect(Math.max(...result)).toBeLessThanOrEqual(1.1)
 
   // Regression: result[0] is naturally at (1.0, 2.0, 3.0)
-  expectCloseTo([0.7335], [result[0]]);
-});
+  expectCloseTo([0.7335], [result[0]])
+})
 
-test("snoise4", async () => {
-  const pairCount = 256;
-  const sampleCount = pairCount * 2;
+test('snoise4', async () => {
+  const pairCount = 256
+  const sampleCount = pairCount * 2
   const src = `
      import constants::PAIR_COUNT;
-     import lygia::generative::snoise::snoise4;
+     import dkonasov__lygia::generative::snoise::snoise4;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -224,30 +224,30 @@ test("snoise4", async () => {
          env::results[i * 2 + 1] = snoise4(vec4f(x + 0.01, y + 0.01, z + 0.01, w + 0.01));
        }
      }
-   `;
+   `
   const result = await testDistribution(src, sampleCount, {
     constants: { PAIR_COUNT: pairCount },
-  });
+  })
 
   // Continuity: check all 256 pairs
-  let maxDiff = 0;
+  let maxDiff = 0
   for (let i = 0; i < pairCount; i++) {
-    const diff = Math.abs(result[i * 2 + 1] - result[i * 2]);
-    maxDiff = Math.max(maxDiff, diff);
+    const diff = Math.abs(result[i * 2 + 1] - result[i * 2])
+    maxDiff = Math.max(maxDiff, diff)
   }
-  expect(maxDiff).toBeLessThan(0.2);
+  expect(maxDiff).toBeLessThan(0.2)
 
   // Range: all values in approximately [-1, 1] (allow small overshoot for simplex noise)
-  expect(Math.min(...result)).toBeGreaterThanOrEqual(-1.1);
-  expect(Math.max(...result)).toBeLessThanOrEqual(1.1);
+  expect(Math.min(...result)).toBeGreaterThanOrEqual(-1.1)
+  expect(Math.max(...result)).toBeLessThanOrEqual(1.1)
 
   // Regression: result[0] is naturally at (1.0, 2.0, 3.0, 4.0)
-  expectCloseTo([-0.3748], [result[0]]);
-});
+  expectCloseTo([-0.3748], [result[0]])
+})
 
-test("snoise22", async () => {
+test('snoise22', async () => {
   const src = `
-     import lygia::generative::snoise::snoise22;
+     import dkonasov__lygia::generative::snoise::snoise22;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -259,15 +259,15 @@ test("snoise22", async () => {
 
        env::results[0] = vec4f(n1.x, n1.y, n2.x, n2.y);
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
   // Test determinism: same input produces same output
-  expectCloseTo([result[0], result[1]], [result[2], result[3]]);
-});
+  expectCloseTo([result[0], result[1]], [result[2], result[3]])
+})
 
-test("snoise33", async () => {
+test('snoise33', async () => {
   const src = `
-     import lygia::generative::snoise::snoise33;
+     import dkonasov__lygia::generative::snoise::snoise33;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -282,17 +282,17 @@ test("snoise33", async () => {
        // Test continuity by computing difference
        env::results[0] = vec4f(n1.x, n1.y, n1.z, length(n3 - n1));
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
   // Test continuity: nearby points should have similar values
-  expect(result[3]).toBeLessThan(0.2);
+  expect(result[3]).toBeLessThan(0.2)
   // Regression: exact output value
-  expectCloseTo([0.7335], [result[0]]);
-});
+  expectCloseTo([0.7335], [result[0]])
+})
 
-test("snoise34", async () => {
+test('snoise34', async () => {
   const src = `
-     import lygia::generative::snoise::snoise34;
+     import dkonasov__lygia::generative::snoise::snoise34;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -307,20 +307,20 @@ test("snoise34", async () => {
        // Test continuity by computing difference
        env::results[0] = vec4f(n1.x, n1.y, n1.z, length(n3 - n1));
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
   // Test continuity: nearby points should have similar values
-  expect(result[3]).toBeLessThan(0.2);
+  expect(result[3]).toBeLessThan(0.2)
   // Regression: exact output value
-  expectCloseTo([-0.3748], [result[0]]);
-});
+  expectCloseTo([-0.3748], [result[0]])
+})
 
-test("pnoise2", async () => {
-  const pairCount = 256;
-  const sampleCount = pairCount * 2;
+test('pnoise2', async () => {
+  const pairCount = 256
+  const sampleCount = pairCount * 2
   const src = `
      import constants::PAIR_COUNT;
-     import lygia::generative::pnoise::pnoise2;
+     import dkonasov__lygia::generative::pnoise::pnoise2;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -334,30 +334,30 @@ test("pnoise2", async () => {
          env::results[i * 2 + 1] = pnoise2(vec2f(x + 0.01, y + 0.01), period);
        }
      }
-   `;
+   `
   const result = await testDistribution(src, sampleCount, {
     constants: { PAIR_COUNT: pairCount },
-  });
+  })
 
   // Continuity: check all 256 pairs
-  let maxDiff = 0;
+  let maxDiff = 0
   for (let i = 0; i < pairCount; i++) {
-    const diff = Math.abs(result[i * 2 + 1] - result[i * 2]);
-    maxDiff = Math.max(maxDiff, diff);
+    const diff = Math.abs(result[i * 2 + 1] - result[i * 2])
+    maxDiff = Math.max(maxDiff, diff)
   }
-  expect(maxDiff).toBeLessThan(0.1);
+  expect(maxDiff).toBeLessThan(0.1)
 
   // Range: all values in [-1, 1]
-  expect(Math.min(...result)).toBeGreaterThanOrEqual(-1.0);
-  expect(Math.max(...result)).toBeLessThanOrEqual(1.0);
+  expect(Math.min(...result)).toBeGreaterThanOrEqual(-1.0)
+  expect(Math.max(...result)).toBeLessThanOrEqual(1.0)
 
   // Regression: result[0] is naturally at (0.5, 0.5)
-  expectCloseTo([-0.4915], [result[0]]);
-});
+  expectCloseTo([-0.4915], [result[0]])
+})
 
-test("pnoise2 - periodicity", async () => {
+test('pnoise2 - periodicity', async () => {
   const src = `
-     import lygia::generative::pnoise::pnoise2;
+     import dkonasov__lygia::generative::pnoise::pnoise2;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -371,18 +371,18 @@ test("pnoise2 - periodicity", async () => {
 
        env::results[0] = vec4f(n1, n2, n3, 0.0);
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
   // Test periodicity property: noise repeats exactly after one period
-  expectCloseTo([result[0], result[0]], [result[1], result[2]]);
-});
+  expectCloseTo([result[0], result[0]], [result[1], result[2]])
+})
 
-test("pnoise3", async () => {
-  const pairCount = 256;
-  const sampleCount = pairCount * 2;
+test('pnoise3', async () => {
+  const pairCount = 256
+  const sampleCount = pairCount * 2
   const src = `
      import constants::PAIR_COUNT;
-     import lygia::generative::pnoise::pnoise3;
+     import dkonasov__lygia::generative::pnoise::pnoise3;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -397,30 +397,30 @@ test("pnoise3", async () => {
          env::results[i * 2 + 1] = pnoise3(vec3f(x + 0.01, y + 0.01, z + 0.01), period);
        }
      }
-   `;
+   `
   const result = await testDistribution(src, sampleCount, {
     constants: { PAIR_COUNT: pairCount },
-  });
+  })
 
   // Continuity: check all 256 pairs
-  let maxDiff = 0;
+  let maxDiff = 0
   for (let i = 0; i < pairCount; i++) {
-    const diff = Math.abs(result[i * 2 + 1] - result[i * 2]);
-    maxDiff = Math.max(maxDiff, diff);
+    const diff = Math.abs(result[i * 2 + 1] - result[i * 2])
+    maxDiff = Math.max(maxDiff, diff)
   }
-  expect(maxDiff).toBeLessThan(0.1);
+  expect(maxDiff).toBeLessThan(0.1)
 
   // Range: all values in [-1, 1]
-  expect(Math.min(...result)).toBeGreaterThanOrEqual(-1.0);
-  expect(Math.max(...result)).toBeLessThanOrEqual(1.0);
+  expect(Math.min(...result)).toBeGreaterThanOrEqual(-1.0)
+  expect(Math.max(...result)).toBeLessThanOrEqual(1.0)
 
   // Regression: result[0] is naturally at (0.5, 0.5, 0.5)
-  expectCloseTo([-0.3962], [result[0]]);
-});
+  expectCloseTo([-0.3962], [result[0]])
+})
 
-test("pnoise3 - periodicity", async () => {
+test('pnoise3 - periodicity', async () => {
   const src = `
-     import lygia::generative::pnoise::pnoise3;
+     import dkonasov__lygia::generative::pnoise::pnoise3;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -434,18 +434,18 @@ test("pnoise3 - periodicity", async () => {
 
        env::results[0] = vec4f(n1, n2, n3, 0.0);
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
   // Test periodicity property: noise repeats exactly after one period
-  expectCloseTo([result[0], result[0]], [result[1], result[2]]);
-});
+  expectCloseTo([result[0], result[0]], [result[1], result[2]])
+})
 
-test("pnoise4", async () => {
-  const pairCount = 256;
-  const sampleCount = pairCount * 2;
+test('pnoise4', async () => {
+  const pairCount = 256
+  const sampleCount = pairCount * 2
   const src = `
      import constants::PAIR_COUNT;
-     import lygia::generative::pnoise::pnoise4;
+     import dkonasov__lygia::generative::pnoise::pnoise4;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -461,58 +461,58 @@ test("pnoise4", async () => {
          env::results[i * 2 + 1] = pnoise4(vec4f(x + 0.01, y + 0.01, z + 0.01, w + 0.01), period);
        }
      }
-   `;
+   `
   const result = await testDistribution(src, sampleCount, {
     constants: { PAIR_COUNT: pairCount },
-  });
+  })
 
   // Continuity: check all 256 pairs
-  let maxDiff = 0;
+  let maxDiff = 0
   for (let i = 0; i < pairCount; i++) {
-    const diff = Math.abs(result[i * 2 + 1] - result[i * 2]);
-    maxDiff = Math.max(maxDiff, diff);
+    const diff = Math.abs(result[i * 2 + 1] - result[i * 2])
+    maxDiff = Math.max(maxDiff, diff)
   }
-  expect(maxDiff).toBeLessThan(0.1);
+  expect(maxDiff).toBeLessThan(0.1)
 
   // Range: all values in [-1, 1]
-  expect(Math.min(...result)).toBeGreaterThanOrEqual(-1.0);
-  expect(Math.max(...result)).toBeLessThanOrEqual(1.0);
+  expect(Math.min(...result)).toBeGreaterThanOrEqual(-1.0)
+  expect(Math.max(...result)).toBeLessThanOrEqual(1.0)
 
   // Regression: result[0] is naturally at (0.5, 0.5, 0.5, 0.5)
-  expectCloseTo([0.0203], [result[0]]);
-});
+  expectCloseTo([0.0203], [result[0]])
+})
 
-test("pnoise4 - periodicity", async () => {
-  const period = "vec4f(4.0, 4.0, 4.0, 4.0)";
-  const p = "vec4f(0.5, 0.5, 0.5, 0.5)";
+test('pnoise4 - periodicity', async () => {
+  const period = 'vec4f(4.0, 4.0, 4.0, 4.0)'
+  const p = 'vec4f(0.5, 0.5, 0.5, 0.5)'
 
   // Test periodicity by running three separate shader invocations
   const src1 = `
-     import lygia::generative::pnoise::pnoise4;
+     import dkonasov__lygia::generative::pnoise::pnoise4;
      @compute @workgroup_size(1)
      fn foo() {
        env::results[0] = pnoise4(${p}, ${period});
      }
-   `;
+   `
   const src2 = `
-     import lygia::generative::pnoise::pnoise4;
+     import dkonasov__lygia::generative::pnoise::pnoise4;
      @compute @workgroup_size(1)
      fn foo() {
        env::results[0] = pnoise4(${p} + ${period}, ${period});
      }
-   `;
+   `
   const src3 = `
-     import lygia::generative::pnoise::pnoise4;
+     import dkonasov__lygia::generative::pnoise::pnoise4;
      @compute @workgroup_size(1)
      fn foo() {
        env::results[0] = pnoise4(${p} + ${period} * 2.0, ${period});
      }
-   `;
+   `
 
-  const n1 = await lygiaTestCompute(src1, { elem: "f32", size: 1 });
-  const n2 = await lygiaTestCompute(src2, { elem: "f32", size: 1 });
-  const n3 = await lygiaTestCompute(src3, { elem: "f32", size: 1 });
+  const n1 = await lygiaTestCompute(src1, { elem: 'f32', size: 1 })
+  const n2 = await lygiaTestCompute(src2, { elem: 'f32', size: 1 })
+  const n3 = await lygiaTestCompute(src3, { elem: 'f32', size: 1 })
 
   // Test periodicity property: noise repeats exactly after one period
-  expectCloseTo([n1[0], n1[0]], [n2[0], n3[0]]);
-});
+  expectCloseTo([n1[0], n1[0]], [n2[0], n3[0]])
+})

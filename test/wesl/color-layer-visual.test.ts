@@ -1,24 +1,24 @@
-import { afterAll, beforeAll, test } from "vitest";
-import { imageMatcher } from "vitest-image-snapshot";
-import { destroySharedDevice, getGPUDevice } from "wgsl-test";
-import { expectBlend } from "./testUtil.ts";
+import { afterAll, beforeAll, test } from 'vitest'
+import { imageMatcher } from 'vitest-image-snapshot'
+import { destroySharedDevice, getGPUDevice } from 'wgsl-test'
+import { expectBlend } from './testUtil.ts'
 
-imageMatcher();
+imageMatcher()
 
 beforeAll(async () => {
-  await getGPUDevice(); // Initialize shared device
-});
+  await getGPUDevice() // Initialize shared device
+})
 
 afterAll(() => {
-  destroySharedDevice();
-});
+  destroySharedDevice()
+})
 
 // Contrast modes
-test("hardLight blend mode", async () => {
+test('hardLight blend mode', async () => {
   await expectBlend(
     `
-    import lygia::color::layer::hardLightSourceOver::layerHardLightSourceOver4;
-    import lygia::test::wesl_util::blendInputs::blendInputs;
+    import dkonasov__lygia::color::layer::hardLightSourceOver::layerHardLightSourceOver4;
+    import dkonasov__lygia::test::wesl_util::blendInputs::blendInputs;
 
     @fragment
     fn fs_main(@builtin(position) pos: vec4f) -> @location(0) vec4f {
@@ -26,15 +26,15 @@ test("hardLight blend mode", async () => {
       return layerHardLightSourceOver4(inputs.src, inputs.dst);
     }
   `,
-    "layer-hardlight",
-  );
-});
+    'layer-hardlight',
+  )
+})
 
-test("softLight blend mode", async () => {
+test('softLight blend mode', async () => {
   await expectBlend(
     `
-    import lygia::color::layer::softLightSourceOver::layerSoftLightSourceOver4;
-    import lygia::test::wesl_util::blendInputs::blendInputs;
+    import dkonasov__lygia::color::layer::softLightSourceOver::layerSoftLightSourceOver4;
+    import dkonasov__lygia::test::wesl_util::blendInputs::blendInputs;
 
     @fragment
     fn fs_main(@builtin(position) pos: vec4f) -> @location(0) vec4f {
@@ -42,15 +42,15 @@ test("softLight blend mode", async () => {
       return layerSoftLightSourceOver4(inputs.src, inputs.dst);
     }
   `,
-    "layer-softlight",
-  );
-});
+    'layer-softlight',
+  )
+})
 
-test("vividLight blend mode", async () => {
+test('vividLight blend mode', async () => {
   await expectBlend(
     `
-    import lygia::color::layer::vividLightSourceOver::layerVividLightSourceOver4;
-    import lygia::test::wesl_util::blendInputs::blendInputs;
+    import dkonasov__lygia::color::layer::vividLightSourceOver::layerVividLightSourceOver4;
+    import dkonasov__lygia::test::wesl_util::blendInputs::blendInputs;
 
     @fragment
     fn fs_main(@builtin(position) pos: vec4f) -> @location(0) vec4f {
@@ -58,16 +58,16 @@ test("vividLight blend mode", async () => {
       return layerVividLightSourceOver4(inputs.src, inputs.dst);
     }
   `,
-    "layer-vividlight",
+    'layer-vividlight',
     { allowedPixelRatio: 0.01 }, // vividLight rounding varies across GPUs
-  );
-});
+  )
+})
 
-test("linearLight blend mode", async () => {
+test('linearLight blend mode', async () => {
   await expectBlend(
     `
-    import lygia::color::layer::linearLightSourceOver::layerLinearLightSourceOver4;
-    import lygia::test::wesl_util::blendInputs::blendInputs;
+    import dkonasov__lygia::color::layer::linearLightSourceOver::layerLinearLightSourceOver4;
+    import dkonasov__lygia::test::wesl_util::blendInputs::blendInputs;
 
     @fragment
     fn fs_main(@builtin(position) pos: vec4f) -> @location(0) vec4f {
@@ -75,15 +75,15 @@ test("linearLight blend mode", async () => {
       return layerLinearLightSourceOver4(inputs.src, inputs.dst);
     }
   `,
-    "layer-linearlight",
-  );
-});
+    'layer-linearlight',
+  )
+})
 
-test("pinLight blend mode", async () => {
+test('pinLight blend mode', async () => {
   await expectBlend(
     `
-    import lygia::color::layer::pinLightSourceOver::layerPinLightSourceOver4;
-    import lygia::test::wesl_util::blendInputs::blendInputs;
+    import dkonasov__lygia::color::layer::pinLightSourceOver::layerPinLightSourceOver4;
+    import dkonasov__lygia::test::wesl_util::blendInputs::blendInputs;
 
     @fragment
     fn fs_main(@builtin(position) pos: vec4f) -> @location(0) vec4f {
@@ -91,15 +91,15 @@ test("pinLight blend mode", async () => {
       return layerPinLightSourceOver4(inputs.src, inputs.dst);
     }
   `,
-    "layer-pinlight",
-  );
-});
+    'layer-pinlight',
+  )
+})
 
-test("hardMix blend mode", async () => {
+test('hardMix blend mode', async () => {
   await expectBlend(
     `
-    import lygia::color::layer::hardMixSourceOver::layerHardMixSourceOver4;
-    import lygia::test::wesl_util::blendInputs::blendInputs;
+    import dkonasov__lygia::color::layer::hardMixSourceOver::layerHardMixSourceOver4;
+    import dkonasov__lygia::test::wesl_util::blendInputs::blendInputs;
 
     @fragment
     fn fs_main(@builtin(position) pos: vec4f) -> @location(0) vec4f {
@@ -107,16 +107,16 @@ test("hardMix blend mode", async () => {
       return layerHardMixSourceOver4(inputs.src, inputs.dst);
     }
   `,
-    "layer-hardmix",
-  );
-});
+    'layer-hardmix',
+  )
+})
 
 // Darken modes
-test("colorBurn blend mode", async () => {
+test('colorBurn blend mode', async () => {
   await expectBlend(
     `
-    import lygia::color::layer::colorBurnSourceOver::layerColorBurnSourceOver4;
-    import lygia::test::wesl_util::blendInputs::blendInputs;
+    import dkonasov__lygia::color::layer::colorBurnSourceOver::layerColorBurnSourceOver4;
+    import dkonasov__lygia::test::wesl_util::blendInputs::blendInputs;
 
     @fragment
     fn fs_main(@builtin(position) pos: vec4f) -> @location(0) vec4f {
@@ -124,15 +124,15 @@ test("colorBurn blend mode", async () => {
       return layerColorBurnSourceOver4(inputs.src, inputs.dst);
     }
   `,
-    "layer-colorburn",
-  );
-});
+    'layer-colorburn',
+  )
+})
 
-test("linearBurn blend mode", async () => {
+test('linearBurn blend mode', async () => {
   await expectBlend(
     `
-    import lygia::color::layer::linearBurnSourceOver::layerLinearBurnSourceOver4;
-    import lygia::test::wesl_util::blendInputs::blendInputs;
+    import dkonasov__lygia::color::layer::linearBurnSourceOver::layerLinearBurnSourceOver4;
+    import dkonasov__lygia::test::wesl_util::blendInputs::blendInputs;
 
     @fragment
     fn fs_main(@builtin(position) pos: vec4f) -> @location(0) vec4f {
@@ -140,16 +140,16 @@ test("linearBurn blend mode", async () => {
       return layerLinearBurnSourceOver4(inputs.src, inputs.dst);
     }
   `,
-    "layer-linearburn",
-  );
-});
+    'layer-linearburn',
+  )
+})
 
 // Lighten modes
-test("colorDodge blend mode", async () => {
+test('colorDodge blend mode', async () => {
   await expectBlend(
     `
-    import lygia::color::layer::colorDodgeSourceOver::layerColorDodgeSourceOver4;
-    import lygia::test::wesl_util::blendInputs::blendInputs;
+    import dkonasov__lygia::color::layer::colorDodgeSourceOver::layerColorDodgeSourceOver4;
+    import dkonasov__lygia::test::wesl_util::blendInputs::blendInputs;
 
     @fragment
     fn fs_main(@builtin(position) pos: vec4f) -> @location(0) vec4f {
@@ -157,15 +157,15 @@ test("colorDodge blend mode", async () => {
       return layerColorDodgeSourceOver4(inputs.src, inputs.dst);
     }
   `,
-    "layer-colordodge",
-  );
-});
+    'layer-colordodge',
+  )
+})
 
-test("linearDodge blend mode", async () => {
+test('linearDodge blend mode', async () => {
   await expectBlend(
     `
-    import lygia::color::layer::linearDodgeSourceOver::layerLinearDodgeSourceOver4;
-    import lygia::test::wesl_util::blendInputs::blendInputs;
+    import dkonasov__lygia::color::layer::linearDodgeSourceOver::layerLinearDodgeSourceOver4;
+    import dkonasov__lygia::test::wesl_util::blendInputs::blendInputs;
 
     @fragment
     fn fs_main(@builtin(position) pos: vec4f) -> @location(0) vec4f {
@@ -173,16 +173,16 @@ test("linearDodge blend mode", async () => {
       return layerLinearDodgeSourceOver4(inputs.src, inputs.dst);
     }
   `,
-    "layer-lineardodge",
-  );
-});
+    'layer-lineardodge',
+  )
+})
 
 // HSL modes
-test("color blend mode", async () => {
+test('color blend mode', async () => {
   await expectBlend(
     `
-    import lygia::color::layer::colorSourceOver::layerColorSourceOver4;
-    import lygia::test::wesl_util::blendInputs::blendInputs;
+    import dkonasov__lygia::color::layer::colorSourceOver::layerColorSourceOver4;
+    import dkonasov__lygia::test::wesl_util::blendInputs::blendInputs;
 
     @fragment
     fn fs_main(@builtin(position) pos: vec4f) -> @location(0) vec4f {
@@ -190,15 +190,15 @@ test("color blend mode", async () => {
       return layerColorSourceOver4(inputs.src, inputs.dst);
     }
   `,
-    "layer-color",
-  );
-});
+    'layer-color',
+  )
+})
 
-test("hue blend mode", async () => {
+test('hue blend mode', async () => {
   await expectBlend(
     `
-    import lygia::color::layer::hueSourceOver::layerHueSourceOver4;
-    import lygia::test::wesl_util::blendInputs::blendInputs;
+    import dkonasov__lygia::color::layer::hueSourceOver::layerHueSourceOver4;
+    import dkonasov__lygia::test::wesl_util::blendInputs::blendInputs;
 
     @fragment
     fn fs_main(@builtin(position) pos: vec4f) -> @location(0) vec4f {
@@ -206,15 +206,15 @@ test("hue blend mode", async () => {
       return layerHueSourceOver4(inputs.src, inputs.dst);
     }
   `,
-    "layer-hue",
-  );
-});
+    'layer-hue',
+  )
+})
 
-test("saturation blend mode", async () => {
+test('saturation blend mode', async () => {
   await expectBlend(
     `
-    import lygia::color::layer::saturationSourceOver::layerSaturationSourceOver4;
-    import lygia::test::wesl_util::blendInputs::blendInputs;
+    import dkonasov__lygia::color::layer::saturationSourceOver::layerSaturationSourceOver4;
+    import dkonasov__lygia::test::wesl_util::blendInputs::blendInputs;
 
     @fragment
     fn fs_main(@builtin(position) pos: vec4f) -> @location(0) vec4f {
@@ -222,15 +222,15 @@ test("saturation blend mode", async () => {
       return layerSaturationSourceOver4(inputs.src, inputs.dst);
     }
   `,
-    "layer-saturation",
-  );
-});
+    'layer-saturation',
+  )
+})
 
-test("luminosity blend mode", async () => {
+test('luminosity blend mode', async () => {
   await expectBlend(
     `
-    import lygia::color::layer::luminositySourceOver::layerLuminositySourceOver4;
-    import lygia::test::wesl_util::blendInputs::blendInputs;
+    import dkonasov__lygia::color::layer::luminositySourceOver::layerLuminositySourceOver4;
+    import dkonasov__lygia::test::wesl_util::blendInputs::blendInputs;
 
     @fragment
     fn fs_main(@builtin(position) pos: vec4f) -> @location(0) vec4f {
@@ -238,16 +238,16 @@ test("luminosity blend mode", async () => {
       return layerLuminositySourceOver4(inputs.src, inputs.dst);
     }
   `,
-    "layer-luminosity",
-  );
-});
+    'layer-luminosity',
+  )
+})
 
 // Other modes
-test("average blend mode", async () => {
+test('average blend mode', async () => {
   await expectBlend(
     `
-    import lygia::color::layer::averageSourceOver::layerAverageSourceOver4;
-    import lygia::test::wesl_util::blendInputs::blendInputs;
+    import dkonasov__lygia::color::layer::averageSourceOver::layerAverageSourceOver4;
+    import dkonasov__lygia::test::wesl_util::blendInputs::blendInputs;
 
     @fragment
     fn fs_main(@builtin(position) pos: vec4f) -> @location(0) vec4f {
@@ -255,15 +255,15 @@ test("average blend mode", async () => {
       return layerAverageSourceOver4(inputs.src, inputs.dst);
     }
   `,
-    "layer-average",
-  );
-});
+    'layer-average',
+  )
+})
 
-test("negation blend mode", async () => {
+test('negation blend mode', async () => {
   await expectBlend(
     `
-    import lygia::color::layer::negationSourceOver::layerNegationSourceOver4;
-    import lygia::test::wesl_util::blendInputs::blendInputs;
+    import dkonasov__lygia::color::layer::negationSourceOver::layerNegationSourceOver4;
+    import dkonasov__lygia::test::wesl_util::blendInputs::blendInputs;
 
     @fragment
     fn fs_main(@builtin(position) pos: vec4f) -> @location(0) vec4f {
@@ -271,15 +271,15 @@ test("negation blend mode", async () => {
       return layerNegationSourceOver4(inputs.src, inputs.dst);
     }
   `,
-    "layer-negation",
-  );
-});
+    'layer-negation',
+  )
+})
 
-test("reflect blend mode", async () => {
+test('reflect blend mode', async () => {
   await expectBlend(
     `
-    import lygia::color::layer::reflectSourceOver::layerReflectSourceOver4;
-    import lygia::test::wesl_util::blendInputs::blendInputs;
+    import dkonasov__lygia::color::layer::reflectSourceOver::layerReflectSourceOver4;
+    import dkonasov__lygia::test::wesl_util::blendInputs::blendInputs;
 
     @fragment
     fn fs_main(@builtin(position) pos: vec4f) -> @location(0) vec4f {
@@ -287,15 +287,15 @@ test("reflect blend mode", async () => {
       return layerReflectSourceOver4(inputs.src, inputs.dst);
     }
   `,
-    "layer-reflect",
-  );
-});
+    'layer-reflect',
+  )
+})
 
-test("glow blend mode", async () => {
+test('glow blend mode', async () => {
   await expectBlend(
     `
-    import lygia::color::layer::glowSourceOver::layerGlowSourceOver4;
-    import lygia::test::wesl_util::blendInputs::blendInputs;
+    import dkonasov__lygia::color::layer::glowSourceOver::layerGlowSourceOver4;
+    import dkonasov__lygia::test::wesl_util::blendInputs::blendInputs;
 
     @fragment
     fn fs_main(@builtin(position) pos: vec4f) -> @location(0) vec4f {
@@ -303,6 +303,6 @@ test("glow blend mode", async () => {
       return layerGlowSourceOver4(inputs.src, inputs.dst);
     }
   `,
-    "layer-glow",
-  );
-});
+    'layer-glow',
+  )
+})

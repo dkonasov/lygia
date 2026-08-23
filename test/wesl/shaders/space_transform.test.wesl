@@ -1,12 +1,12 @@
 // Native WESL tests for space transform functions
 
 import wgsl_test::{expectNear, expectNearVec2};
-import lygia::space::center::{center, center2};
-import lygia::space::uncenter::{uncenter, uncenter2};
-import lygia::space::flipY::flipY2;
-import lygia::space::aspect::aspect;
-import lygia::space::ratio::ratio;
-import lygia::space::unratio::unratio;
+import dkonasov__lygia::space::center::{center, center2};
+import dkonasov__lygia::space::uncenter::{uncenter, uncenter2};
+import dkonasov__lygia::space::flipY::flipY2;
+import dkonasov__lygia::space::aspect::aspect;
+import dkonasov__lygia::space::ratio::ratio;
+import dkonasov__lygia::space::unratio::unratio;
 
 @test
 fn centerScalar() {

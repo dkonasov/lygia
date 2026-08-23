@@ -1,6 +1,6 @@
-import lygia::math::quat::div::{quatDiv};
-import lygia::math::quat::conj::{quatConj};
-import lygia::math::quat::lengthSq::{quatLengthSq};
+import dkonasov__lygia::math::quat::div::{quatDiv};
+import dkonasov__lygia::math::quat::conj::{quatConj};
+import dkonasov__lygia::math::quat::lengthSq::{quatLengthSq};
 
 /*
 contributors: Patricio Gonzalez Vivo

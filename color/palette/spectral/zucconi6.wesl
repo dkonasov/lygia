@@ -12,7 +12,7 @@ examples:
     - https://raw.githubusercontent.com/patriciogonzalezvivo/lygia_examples/main/color_wavelength.frag
 */
 
-import lygia::math::bump::bump3;
+import dkonasov__lygia::math::bump::bump3;
 
 const SPECTRAL_ZUCCONI6_ITERATIONS: f32 = 100.0;
 

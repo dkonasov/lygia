@@ -1,4 +1,4 @@
-import lygia::lighting::fresnel::fresnel;
+import dkonasov__lygia::lighting::fresnel::fresnel;
 
 /*
 contributors: Patricio Gonzalez Vivo

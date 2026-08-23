@@ -7,7 +7,7 @@ license:
     - Copyright (c) 2021 Patricio Gonzalez Vivo under Patron License - https://lygia.xyz/license
 */
 
-import lygia::math::saturate::saturate3;
+import dkonasov__lygia::math::saturate::saturate3;
 
 fn k2rgb(t : f32) -> vec3f {
     let p = pow(t, -1.5);

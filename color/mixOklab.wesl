@@ -1,6 +1,6 @@
-import lygia::color::space::rgb2oklab::RGB2OKLAB_B;
-import lygia::color::space::oklab2rgb::OKLAB2RGB_B;
-import lygia::color::space::{srgb2rgb::srgb2rgb, rgb2srgb::rgb2srgb};
+import dkonasov__lygia::color::space::rgb2oklab::RGB2OKLAB_B;
+import dkonasov__lygia::color::space::oklab2rgb::OKLAB2RGB_B;
+import dkonasov__lygia::color::space::{srgb2rgb::srgb2rgb, rgb2srgb::rgb2srgb};
 
 /*
 contributors:

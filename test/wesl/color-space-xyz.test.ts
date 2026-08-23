@@ -1,30 +1,30 @@
-import { test } from "vitest";
-import { expectCloseTo, lygiaTestCompute } from "./testUtil.ts";
+import { test } from 'vitest'
+import { expectCloseTo, lygiaTestCompute } from './testUtil.ts'
 
-test("rgb2xyz", async () => {
+test('rgb2xyz', async () => {
   const src = `
-	import lygia::color::space::rgb2xyz::rgb2xyz;
+	import dkonasov__lygia::color::space::rgb2xyz::rgb2xyz;
 
 	@compute @workgroup_size(1)
 	fn foo() {
 		env::results[0] = rgb2xyz(vec3f(.8, .7, .5));
 	}
-	`;
+	`
 
-  const result = await lygiaTestCompute(src, { elem: "vec3f" });
-  expectCloseTo([67.0487, 70.6832, 57.4054], result);
+  const result = await lygiaTestCompute(src, { elem: 'vec3f' })
+  expectCloseTo([67.0487, 70.6832, 57.4054], result)
 
-  const cie = { CIE_D50: true };
+  const cie = { CIE_D50: true }
   const resultCie = await lygiaTestCompute(src, {
-    elem: "vec3f",
+    elem: 'vec3f',
     conditions: cie,
-  });
-  expectCloseTo([68.9945, 71.0127, 43.6206], resultCie);
-});
+  })
+  expectCloseTo([68.9945, 71.0127, 43.6206], resultCie)
+})
 
-test("srgb2xyz", async () => {
+test('srgb2xyz', async () => {
   const src = `
-     import lygia::color::space::srgb2xyz::srgb2xyz;
+     import dkonasov__lygia::color::space::srgb2xyz::srgb2xyz;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -32,15 +32,15 @@ test("srgb2xyz", async () => {
        let result = srgb2xyz(srgb);
        env::results[0] = result;
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec3f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec3f' })
   // WESL uses 0-100 scale for XYZ
-  expectCloseTo([41.2456, 21.2673, 1.9334], result);
-});
+  expectCloseTo([41.2456, 21.2673, 1.9334], result)
+})
 
-test("xyY2rgb", async () => {
+test('xyY2rgb', async () => {
   const src = `
-     import lygia::color::space::xyY2rgb::xyY2rgb;
+     import dkonasov__lygia::color::space::xyY2rgb::xyY2rgb;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -48,15 +48,15 @@ test("xyY2rgb", async () => {
        let result = xyY2rgb(xyY);
        env::results[0] = result;
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec3f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec3f' })
   // xyY -> RGB (roundtrip should restore original RGB values, 0.001 tolerance for accumulated error)
-  expectCloseTo([1.0, 0.0, 0.0], result, 0.001);
-});
+  expectCloseTo([1.0, 0.0, 0.0], result, 0.001)
+})
 
-test("rgb2xyY", async () => {
+test('rgb2xyY', async () => {
   const src = `
-     import lygia::color::space::rgb2xyY::rgb2xyY;
+     import dkonasov__lygia::color::space::rgb2xyY::rgb2xyY;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -64,15 +64,15 @@ test("rgb2xyY", async () => {
        let result = rgb2xyY(rgb);
        env::results[0] = result;
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec3f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec3f' })
   // WESL: x,y chromaticity 0-1, Y luminance 0-100 (matches XYZ scale)
-  expectCloseTo([0.64, 0.33, 21.2673], result);
-});
+  expectCloseTo([0.64, 0.33, 21.2673], result)
+})
 
-test("xyY2srgb", async () => {
+test('xyY2srgb', async () => {
   const src = `
-     import lygia::color::space::xyY2srgb::xyY2srgb;
+     import dkonasov__lygia::color::space::xyY2srgb::xyY2srgb;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -80,15 +80,15 @@ test("xyY2srgb", async () => {
        let result = xyY2srgb(xyY);
        env::results[0] = result;
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec3f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec3f' })
   // xyY -> XYZ (0-100 scale) -> RGB(1,0,0) -> sRGB(1,0,0)
-  expectCloseTo([1.0, 0.0, 0.0], result, 0.001);
-});
+  expectCloseTo([1.0, 0.0, 0.0], result, 0.001)
+})
 
-test("xyY2xyz", async () => {
+test('xyY2xyz', async () => {
   const src = `
-     import lygia::color::space::xyY2xyz::xyY2xyz;
+     import dkonasov__lygia::color::space::xyY2xyz::xyY2xyz;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -96,16 +96,16 @@ test("xyY2xyz", async () => {
        let result = xyY2xyz(xyY);
        env::results[0] = result;
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec3f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec3f' })
   // xyY Y component is already 0-100 scale, so Y=1 stays as 1
   // x,y chromaticity coordinates scale proportionally with Y
-  expectCloseTo([0.9505, 1.0, 1.089], result, 0.01);
-});
+  expectCloseTo([0.9505, 1.0, 1.089], result, 0.01)
+})
 
-test("xyz2xyY", async () => {
+test('xyz2xyY', async () => {
   const src = `
-     import lygia::color::space::xyz2xyY::xyz2xyY;
+     import dkonasov__lygia::color::space::xyz2xyY::xyz2xyY;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -113,15 +113,15 @@ test("xyz2xyY", async () => {
        let result = xyz2xyY(xyz);
        env::results[0] = result;
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec3f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec3f' })
   // XYZ -> xyY
-  expectCloseTo([0.3127, 0.329, 1.0], result);
-});
+  expectCloseTo([0.3127, 0.329, 1.0], result)
+})
 
-test("xyz2srgb", async () => {
+test('xyz2srgb', async () => {
   const src = `
-     import lygia::color::space::xyz2srgb::xyz2srgb;
+     import dkonasov__lygia::color::space::xyz2srgb::xyz2srgb;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -129,15 +129,15 @@ test("xyz2srgb", async () => {
        let result = xyz2srgb(xyz);
        env::results[0] = result;
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec3f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec3f' })
   // WESL uses 0-100 scale: XYZ(41.24, 21.26, 1.93) -> RGB(1,0,0) -> sRGB(1,0,0)
-  expectCloseTo([1.0, 0.0, 0.0], result, 0.001);
-});
+  expectCloseTo([1.0, 0.0, 0.0], result, 0.001)
+})
 
-test("xyz2rgb", async () => {
+test('xyz2rgb', async () => {
   const src = `
-     import lygia::color::space::xyz2rgb::xyz2rgb;
+     import dkonasov__lygia::color::space::xyz2rgb::xyz2rgb;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -145,16 +145,16 @@ test("xyz2rgb", async () => {
        let result = xyz2rgb(xyz);
        env::results[0] = result;
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec3f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec3f' })
   // WESL uses 0-100 scale for XYZ (colorimetry standard)
   // XYZ(41.24, 21.26, 1.93) -> RGB(1, 0, 0)
-  expectCloseTo([1.0, 0.0, 0.0], result);
-});
+  expectCloseTo([1.0, 0.0, 0.0], result)
+})
 
-test("rgb2xyz4 - alpha preservation", async () => {
+test('rgb2xyz4 - alpha preservation', async () => {
   const src = `
-     import lygia::color::space::rgb2xyz::rgb2xyz4;
+     import dkonasov__lygia::color::space::rgb2xyz::rgb2xyz4;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -162,15 +162,15 @@ test("rgb2xyz4 - alpha preservation", async () => {
        let result = rgb2xyz4(rgb);
        env::results[0] = result;
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
   // WESL uses 0-100 scale for XYZ
-  expectCloseTo([67.0487, 70.6832, 57.4054, 0.2], result);
-});
+  expectCloseTo([67.0487, 70.6832, 57.4054, 0.2], result)
+})
 
-test("xyz2rgb4 - alpha preservation", async () => {
+test('xyz2rgb4 - alpha preservation', async () => {
   const src = `
-     import lygia::color::space::xyz2rgb::xyz2rgb4;
+     import dkonasov__lygia::color::space::xyz2rgb::xyz2rgb4;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -178,14 +178,14 @@ test("xyz2rgb4 - alpha preservation", async () => {
        let result = xyz2rgb4(xyz);
        env::results[0] = result;
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
-  expectCloseTo([1.0, 0.0, 0.0, 0.6], result);
-});
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
+  expectCloseTo([1.0, 0.0, 0.0, 0.6], result)
+})
 
-test("rgb2xyY4 - alpha preservation", async () => {
+test('rgb2xyY4 - alpha preservation', async () => {
   const src = `
-     import lygia::color::space::rgb2xyY::rgb2xyY4;
+     import dkonasov__lygia::color::space::rgb2xyY::rgb2xyY4;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -193,15 +193,15 @@ test("rgb2xyY4 - alpha preservation", async () => {
        let result = rgb2xyY4(rgb);
        env::results[0] = result;
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
   // WESL uses 0-100 scale for Y: RGB(1, 0, 0) -> xyY (x,y in 0-1, Y in 0-100)
-  expectCloseTo([0.64, 0.33, 21.26, 0.4], result, 0.01);
-});
+  expectCloseTo([0.64, 0.33, 21.26, 0.4], result, 0.01)
+})
 
-test("srgb2xyz4 - alpha preservation", async () => {
+test('srgb2xyz4 - alpha preservation', async () => {
   const src = `
-     import lygia::color::space::srgb2xyz::srgb2xyz4;
+     import dkonasov__lygia::color::space::srgb2xyz::srgb2xyz4;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -209,15 +209,15 @@ test("srgb2xyz4 - alpha preservation", async () => {
        let result = srgb2xyz4(srgb);
        env::results[0] = result;
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
   // WESL uses 0-100 scale: sRGB(1, 0, 0) -> XYZ with alpha
-  expectCloseTo([41.24, 21.26, 1.93, 0.65], result, 0.01);
-});
+  expectCloseTo([41.24, 21.26, 1.93, 0.65], result, 0.01)
+})
 
-test("xyY2rgb4 - alpha preservation", async () => {
+test('xyY2rgb4 - alpha preservation', async () => {
   const src = `
-     import lygia::color::space::xyY2rgb::xyY2rgb4;
+     import dkonasov__lygia::color::space::xyY2rgb::xyY2rgb4;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -225,15 +225,15 @@ test("xyY2rgb4 - alpha preservation", async () => {
        let result = xyY2rgb4(xyY);
        env::results[0] = result;
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
   // xyY -> RGB (vec4 overload with alpha preservation, 0.001 tolerance for accumulated error)
-  expectCloseTo([1.0, 0.0, 0.0, 0.5], result, 0.001);
-});
+  expectCloseTo([1.0, 0.0, 0.0, 0.5], result, 0.001)
+})
 
-test("xyY2srgb4 - alpha preservation", async () => {
+test('xyY2srgb4 - alpha preservation', async () => {
   const src = `
-     import lygia::color::space::xyY2srgb::xyY2srgb4;
+     import dkonasov__lygia::color::space::xyY2srgb::xyY2srgb4;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -241,15 +241,15 @@ test("xyY2srgb4 - alpha preservation", async () => {
        let result = xyY2srgb4(xyY);
        env::results[0] = result;
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
   // xyY -> XYZ (0-100 scale) -> RGB -> sRGB with alpha
-  expectCloseTo([1.0, 0.0, 0.0, 0.85], result, 0.001);
-});
+  expectCloseTo([1.0, 0.0, 0.0, 0.85], result, 0.001)
+})
 
-test("xyY2xyz4 - alpha preservation", async () => {
+test('xyY2xyz4 - alpha preservation', async () => {
   const src = `
-     import lygia::color::space::xyY2xyz::xyY2xyz4;
+     import dkonasov__lygia::color::space::xyY2xyz::xyY2xyz4;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -257,15 +257,15 @@ test("xyY2xyz4 - alpha preservation", async () => {
        let result = xyY2xyz4(xyY);
        env::results[0] = result;
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
   // xyY Y component is already 0-100 scale, so Y=1 stays as 1
-  expectCloseTo([0.9505, 1.0, 1.089, 0.4], result, 0.01);
-});
+  expectCloseTo([0.9505, 1.0, 1.089, 0.4], result, 0.01)
+})
 
-test("xyz2srgb4 - alpha preservation", async () => {
+test('xyz2srgb4 - alpha preservation', async () => {
   const src = `
-     import lygia::color::space::xyz2srgb::xyz2srgb4;
+     import dkonasov__lygia::color::space::xyz2srgb::xyz2srgb4;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -273,15 +273,15 @@ test("xyz2srgb4 - alpha preservation", async () => {
        let result = xyz2srgb4(xyz);
        env::results[0] = result;
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
   // WESL uses 0-100 scale: XYZ -> RGB -> sRGB with alpha
-  expectCloseTo([1.0, 0.0, 0.0, 0.2], result, 0.001);
-});
+  expectCloseTo([1.0, 0.0, 0.0, 0.2], result, 0.001)
+})
 
-test("xyz2xyY4 - alpha preservation", async () => {
+test('xyz2xyY4 - alpha preservation', async () => {
   const src = `
-     import lygia::color::space::xyz2xyY::xyz2xyY4;
+     import dkonasov__lygia::color::space::xyz2xyY::xyz2xyY4;
 
      @compute @workgroup_size(1)
      fn foo() {
@@ -289,8 +289,8 @@ test("xyz2xyY4 - alpha preservation", async () => {
        let result = xyz2xyY4(xyz);
        env::results[0] = result;
      }
-   `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
+   `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
   // XYZ -> xyY with alpha
-  expectCloseTo([0.3127, 0.329, 1.0, 0.75], result);
-});
+  expectCloseTo([0.3127, 0.329, 1.0, 0.75], result)
+})

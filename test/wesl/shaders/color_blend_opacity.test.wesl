@@ -1,17 +1,17 @@
 // Native WESL tests for blend modes with opacity
 
 import wgsl_test::{expectNearVec3};
-import lygia::color::blend::difference::blendDifference3Opacity;
-import lygia::color::blend::exclusion::blendExclusion3Opacity;
-import lygia::color::blend::negation::blendNegation3Opacity;
-import lygia::color::blend::phoenix::blendPhoenix3Opacity;
-import lygia::color::blend::reflect::blendReflect3Opacity;
-import lygia::color::blend::subtract::blendSubtract3Opacity;
-import lygia::color::blend::glow::blendGlow3Opacity;
-import lygia::color::blend::colorBurn::blendColorBurn3Opacity;
-import lygia::color::blend::colorDodge::blendColorDodge3Opacity;
-import lygia::color::blend::linearBurn::blendLinearBurn3Opacity;
-import lygia::color::blend::linearDodge::blendLinearDodge3Opacity;
+import dkonasov__lygia::color::blend::difference::blendDifference3Opacity;
+import dkonasov__lygia::color::blend::exclusion::blendExclusion3Opacity;
+import dkonasov__lygia::color::blend::negation::blendNegation3Opacity;
+import dkonasov__lygia::color::blend::phoenix::blendPhoenix3Opacity;
+import dkonasov__lygia::color::blend::reflect::blendReflect3Opacity;
+import dkonasov__lygia::color::blend::subtract::blendSubtract3Opacity;
+import dkonasov__lygia::color::blend::glow::blendGlow3Opacity;
+import dkonasov__lygia::color::blend::colorBurn::blendColorBurn3Opacity;
+import dkonasov__lygia::color::blend::colorDodge::blendColorDodge3Opacity;
+import dkonasov__lygia::color::blend::linearBurn::blendLinearBurn3Opacity;
+import dkonasov__lygia::color::blend::linearDodge::blendLinearDodge3Opacity;
 
 @test(blendDifference3Opacity_basic)
 fn testBlendDifference3Opacity() {

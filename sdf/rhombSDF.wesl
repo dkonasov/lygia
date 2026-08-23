@@ -1,6 +1,6 @@
 @if(CENTER_2D)
 import constants::CENTER_2D;
-import lygia::sdf::triSDF::triSDF;
+import dkonasov__lygia::sdf::triSDF::triSDF;
 
 /*
 contributors: Patricio Gonzalez Vivo

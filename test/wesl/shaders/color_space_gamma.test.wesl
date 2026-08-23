@@ -1,8 +1,8 @@
 // Native WESL tests for gamma/linear color space conversions
 
 import wgsl_test::{expectNear, expectNearVec3, expectNearVec4};
-import lygia::color::space::gamma2linear::{gamma2linear, gamma2linear3, gamma2linear4};
-import lygia::color::space::linear2gamma::{linear2gamma, linear2gamma3, linear2gamma4};
+import dkonasov__lygia::color::space::gamma2linear::{gamma2linear, gamma2linear3, gamma2linear4};
+import dkonasov__lygia::color::space::linear2gamma::{linear2gamma, linear2gamma3, linear2gamma4};
 
 @test
 fn gamma2linearVec3() {

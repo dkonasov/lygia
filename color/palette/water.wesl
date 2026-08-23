@@ -9,7 +9,7 @@ license:
     - Copyright (c) 2021 Patricio Gonzalez Vivo under Patron License - https://lygia.xyz/license
 */
 
-import lygia::math::saturate::saturate;
+import dkonasov__lygia::math::saturate::saturate;
 
 fn water(x: f32) -> vec3f {
     return pow(vec3f(0.1, 0.7, 0.8), vec3f(4.0 * saturate(1.0 - x)));

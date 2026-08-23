@@ -1,4 +1,4 @@
-import lygia::color::space::hue2rgb::hue2rgb;
+import dkonasov__lygia::color::space::hue2rgb::hue2rgb;
 
 /*
 contributors: Inigo Quiles

@@ -1,7 +1,7 @@
-import lygia::math::cubic::cubic;
-import lygia::generative::srandom::srandom3;
-import lygia::generative::random::random3;
-import lygia::math::quintic::quintic;
+import dkonasov__lygia::math::cubic::cubic;
+import dkonasov__lygia::generative::srandom::srandom3;
+import dkonasov__lygia::generative::random::random3;
+import dkonasov__lygia::math::quintic::quintic;
 
 /*
 contributors: Patricio Gonzalez Vivo

@@ -1,6 +1,6 @@
-import lygia::color::levels::inputRange::levelsInputRange3;
-import lygia::color::levels::gamma::levelsGamma3;
-import lygia::color::levels::outputRange::levelsOutputRange3;
+import dkonasov__lygia::color::levels::inputRange::levelsInputRange3;
+import dkonasov__lygia::color::levels::gamma::levelsGamma3;
+import dkonasov__lygia::color::levels::outputRange::levelsOutputRange3;
 
 /*
 contributors: Johan Ismael

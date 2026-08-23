@@ -7,7 +7,7 @@ examples:
     - https://raw.githubusercontent.com/patriciogonzalezvivo/lygia_examples/main/color_wavelength.frag
 */
 
-import lygia::math::bump::bumpDefault3;
+import dkonasov__lygia::math::bump::bumpDefault3;
 
 fn spectral_gems(x: f32) -> vec3f {
     return bumpDefault3(vec3f(

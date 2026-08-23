@@ -1,4 +1,4 @@
-import lygia::space::lookAt::{lookAt, lookAt3, lookAt3Roll};
+import dkonasov__lygia::space::lookAt::{lookAt, lookAt3, lookAt3Roll};
 
 /*
 contributors: Shadi El Hajj

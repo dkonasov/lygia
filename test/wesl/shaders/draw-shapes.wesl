@@ -1,24 +1,24 @@
 // WESL version of lygia_examples/draw_shapes.frag
 // Displays 14 different 2D SDF shapes in a 4×4 grid for visual comparison with GLSL
 
-import lygia::draw::fill::fill;
-import lygia::space::ratio::ratio;
-import lygia::space::rotate::rotate;
+import dkonasov__lygia::draw::fill::fill;
+import dkonasov__lygia::space::ratio::ratio;
+import dkonasov__lygia::space::rotate::rotate;
 
-import lygia::sdf::circleSDF::circleSDF;
-import lygia::sdf::crossSDF::crossSDF;
-import lygia::sdf::flowerSDF::flowerSDF;
-import lygia::sdf::gearSDF::gearSDF;
-import lygia::sdf::heartSDF::heartSDF;
-import lygia::sdf::hexSDF::hexSDF;
-import lygia::sdf::polySDF::polySDF;
-import lygia::sdf::rectSDF::rectSDF;
-import lygia::sdf::raysSDF::raysSDF;
-import lygia::sdf::rhombSDF::rhombSDF;
-import lygia::sdf::spiralSDF::spiralSDF;
-import lygia::sdf::starSDF::starSDF1;
-import lygia::sdf::triSDF::triSDF;
-import lygia::sdf::vesicaSDF::vesicaSDF;
+import dkonasov__lygia::sdf::circleSDF::circleSDF;
+import dkonasov__lygia::sdf::crossSDF::crossSDF;
+import dkonasov__lygia::sdf::flowerSDF::flowerSDF;
+import dkonasov__lygia::sdf::gearSDF::gearSDF;
+import dkonasov__lygia::sdf::heartSDF::heartSDF;
+import dkonasov__lygia::sdf::hexSDF::hexSDF;
+import dkonasov__lygia::sdf::polySDF::polySDF;
+import dkonasov__lygia::sdf::rectSDF::rectSDF;
+import dkonasov__lygia::sdf::raysSDF::raysSDF;
+import dkonasov__lygia::sdf::rhombSDF::rhombSDF;
+import dkonasov__lygia::sdf::spiralSDF::spiralSDF;
+import dkonasov__lygia::sdf::starSDF::starSDF1;
+import dkonasov__lygia::sdf::triSDF::triSDF;
+import dkonasov__lygia::sdf::vesicaSDF::vesicaSDF;
 
 @group(0) @binding(0) var<uniform> uniforms: env::Uniforms;
 

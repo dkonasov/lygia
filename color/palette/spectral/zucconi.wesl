@@ -13,7 +13,7 @@ examples:
     - https://raw.githubusercontent.com/patriciogonzalezvivo/lygia_examples/main/color_wavelength.frag
 */
 
-import lygia::math::bump::bump3;
+import dkonasov__lygia::math::bump::bump3;
 
 fn spectral_zucconi(x: f32) -> vec3f {
     const cs = vec3f(3.54541723, 2.86670055, 2.29421995);

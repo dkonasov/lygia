@@ -1,11 +1,11 @@
 // Native WESL tests for color luminance/luma functions
 
 import wgsl_test::{expectNear, expectNearVec2};
-import lygia::color::luminance::luminance;
-import lygia::color::luminance::luminance4;
-import lygia::color::luma::luma;
-import lygia::color::luma::luma3;
-import lygia::color::luma::luma4;
+import dkonasov__lygia::color::luminance::luminance;
+import dkonasov__lygia::color::luminance::luminance4;
+import dkonasov__lygia::color::luma::luma;
+import dkonasov__lygia::color::luma::luma3;
+import dkonasov__lygia::color::luma::luma4;
 
 @test
 fn luminanceOrange() {

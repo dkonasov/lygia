@@ -1,4 +1,4 @@
-import lygia::color::space::xyz2rgb::XYZ2RGB;
+import dkonasov__lygia::color::space::xyz2rgb::XYZ2RGB;
 
 /*
 contributors: Ronald van Wijnen (@OneDayOfCrypto)

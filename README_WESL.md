@@ -17,7 +17,7 @@ WESL is a strict superset of WGSL, adding import statements, conditional compila
 - WESL file names can't start with a number, and can't be current WGSL or WESL keywords.
 - The file/directory hierarchy translates to double colons in WESL:
   ```rs
-    import lygia::color::space::hsl2rgb::hsl2rgb;
+    import dkonasov__lygia::color::space::hsl2rgb::hsl2rgb;
   ```
   See [WESL imports](https://wesl-lang.dev/spec/Imports) for details. 
 - You can also reference other shader modules inline without import statements.

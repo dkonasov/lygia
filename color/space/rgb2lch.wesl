@@ -1,5 +1,5 @@
-import lygia::color::space::rgb2lab::rgb2lab;
-import lygia::color::space::lab2lch::lab2lch;
+import dkonasov__lygia::color::space::rgb2lab::rgb2lab;
+import dkonasov__lygia::color::space::lab2lch::lab2lch;
 
 /*
 contributors: Patricio Gonzalez Vivo

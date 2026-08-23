@@ -1,5 +1,5 @@
-import lygia::color::hueShift::hueShift;
-import lygia::color::space::{rgb2ryb::rgb2ryb, ryb2rgb::ryb2rgb};
+import dkonasov__lygia::color::hueShift::hueShift;
+import dkonasov__lygia::color::space::{rgb2ryb::rgb2ryb, ryb2rgb::ryb2rgb};
 
 /*
 contributors:

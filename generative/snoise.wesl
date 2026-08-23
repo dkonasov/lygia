@@ -1,7 +1,7 @@
-import lygia::math::mod289::{mod289_2, mod289_3, mod289_4};
-import lygia::math::permute::{permute, permute3, permute4};
-import lygia::math::taylorInvSqrt::{taylorInvSqrt, taylorInvSqrt4};
-import lygia::math::grad4::grad4;
+import dkonasov__lygia::math::mod289::{mod289_2, mod289_3, mod289_4};
+import dkonasov__lygia::math::permute::{permute, permute3, permute4};
+import dkonasov__lygia::math::taylorInvSqrt::{taylorInvSqrt, taylorInvSqrt4};
+import dkonasov__lygia::math::grad4::grad4;
 
 /*
 contributors: [Stefan Gustavson, Ian McEwan]

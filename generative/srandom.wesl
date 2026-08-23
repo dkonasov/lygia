@@ -1,4 +1,4 @@
-import lygia::math::fmod::{fmod2, fmod3};
+import dkonasov__lygia::math::fmod::{fmod2, fmod3};
 
 /*
 contributors:

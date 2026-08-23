@@ -1,5 +1,5 @@
-import lygia::color::space::{hsv2rgb::hsv2rgb, ryb2rgb::ryb2rgb};
-import lygia::math::saturate::saturate3;
+import dkonasov__lygia::color::space::{hsv2rgb::hsv2rgb, ryb2rgb::ryb2rgb};
+import dkonasov__lygia::math::saturate::saturate3;
 
 /*
 contributors: Patricio Gonzalez Vivo

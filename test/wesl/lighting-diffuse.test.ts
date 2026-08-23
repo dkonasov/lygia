@@ -1,9 +1,9 @@
-import { expect, test } from "vitest";
-import { expectCloseTo, lygiaTestCompute } from "./testUtil.ts";
+import { expect, test } from 'vitest'
+import { expectCloseTo, lygiaTestCompute } from './testUtil.ts'
 
-test("diffuseOrenNayar", async () => {
+test('diffuseOrenNayar', async () => {
   const src = `
-    import lygia::lighting::diffuse::orenNayar::diffuseOrenNayar;
+    import dkonasov__lygia::lighting::diffuse::orenNayar::diffuseOrenNayar;
 
     @compute @workgroup_size(1)
     fn foo() {
@@ -51,36 +51,36 @@ test("diffuseOrenNayar", async () => {
 
       env::results[0] = vec4f(smoothResult, roughResult, retroResult, 0.0);
     }
-  `;
-  const result = await lygiaTestCompute(src, { elem: "vec4f" });
+  `
+  const result = await lygiaTestCompute(src, { elem: 'vec4f' })
 
   // Expected values calculated manually from the Oren-Nayar formula:
-  const NoL = 1.0 / Math.sqrt(3); // ≈ 0.57735
+  const NoL = 1.0 / Math.sqrt(3) // ≈ 0.57735
 
   // Test 1: roughness=0 → result = NoL
   // Using 1e-5: GPU and CPU compute identical formula, should match to high precision
-  expectCloseTo([NoL], [result[0]], 1e-5);
+  expectCloseTo([NoL], [result[0]], 1e-5)
 
   // Test 2: roughness=1.0, perpendicular view
   // A = 1.0 + 1.0 * (1.0/(1.0+0.13) + 0.5/(1.0+0.33)) ≈ 2.26090
   // s = 0, so Result = NoL * A
-  const A = 1.0 + 1.0 * (1.0 / (1.0 + 0.13) + 0.5 / (1.0 + 0.33));
-  const expectedRoughResult = NoL * A;
+  const A = 1.0 + 1.0 * (1.0 / (1.0 + 0.13) + 0.5 / (1.0 + 0.33))
+  const expectedRoughResult = NoL * A
   // Using 1e-5: GPU and CPU compute identical formula, should match to high precision
-  expectCloseTo([expectedRoughResult], [result[1]], 1e-5);
+  expectCloseTo([expectedRoughResult], [result[1]], 1e-5)
 
   // Test 3: retroreflection (V=L, roughness=1.0)
   // s = 1.0 - 1/3 = 2/3, t = 1/sqrt(3)
   // B = 0.45 * 1.0 / (1.0 + 0.09)
   // Result = NoL * (A + B * s / t)
-  const B = (0.45 * 1.0) / (1.0 + 0.09);
-  const s = 1.0 - NoL * NoL;
-  const t = NoL;
-  const expectedRetroResult = NoL * (A + (B * s) / t);
+  const B = (0.45 * 1.0) / (1.0 + 0.09)
+  const s = 1.0 - NoL * NoL
+  const t = NoL
+  const expectedRetroResult = NoL * (A + (B * s) / t)
   // Using 1e-5: GPU and CPU compute identical formula, should match to high precision
-  expectCloseTo([expectedRetroResult], [result[2]], 1e-5);
+  expectCloseTo([expectedRetroResult], [result[2]], 1e-5)
 
   // Verify relationships still hold as sanity check
-  expect(result[1]).toBeGreaterThan(result[0]); // Rough > smooth
-  expect(result[2]).toBeGreaterThan(result[1]); // Retro > rough
-});
+  expect(result[1]).toBeGreaterThan(result[0]) // Rough > smooth
+  expect(result[2]).toBeGreaterThan(result[1]) // Retro > rough
+})

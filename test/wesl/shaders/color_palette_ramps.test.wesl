@@ -1,8 +1,8 @@
 // Native WESL tests for fire and water palette ramps
 
 import wgsl_test::expectNearVec3;
-import lygia::color::palette::fire::fire;
-import lygia::color::palette::water::water;
+import dkonasov__lygia::color::palette::fire::fire;
+import dkonasov__lygia::color::palette::water::water;
 
 // ============ fire ============
 // Formula: vec3f(1.0, 0.25, 0.0625) * exp(4.0 * x - 1.0)

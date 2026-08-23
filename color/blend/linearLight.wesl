@@ -1,4 +1,4 @@
-import lygia::color::blend::{linearDodge::blendLinearDodge, linearBurn::blendLinearBurn};
+import dkonasov__lygia::color::blend::{linearDodge::blendLinearDodge, linearBurn::blendLinearBurn};
 
 /*
 contributors: Jamie Owen

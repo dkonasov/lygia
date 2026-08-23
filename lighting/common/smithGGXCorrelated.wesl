@@ -1,4 +1,4 @@
-import lygia::math::saturateMediump::saturateMediump;
+import dkonasov__lygia::math::saturateMediump::saturateMediump;
 
 // Heitz 2014, "Understanding the Masking-Shadowing Function in Microfacet-Based BRDFs"
 fn smithGGXCorrelated(NoV: f32, NoL: f32, roughness: f32) -> f32 {

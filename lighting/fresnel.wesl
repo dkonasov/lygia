@@ -1,6 +1,6 @@
-import lygia::lighting::common::schlick::{schlick, schlickF32};
-import lygia::math::saturate::saturate;
-import lygia::math::pow5::pow5;
+import dkonasov__lygia::lighting::common::schlick::{schlick, schlickF32};
+import dkonasov__lygia::math::saturate::saturate;
+import dkonasov__lygia::math::pow5::pow5;
 
 /*
 contributors: Patricio Gonzalez Vivo

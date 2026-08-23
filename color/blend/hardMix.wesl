@@ -1,4 +1,4 @@
-import lygia::color::blend::vividLight::blendVividLight;
+import dkonasov__lygia::color::blend::vividLight::blendVividLight;
 
 /*
 contributors: Jamie Owen

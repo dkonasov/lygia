@@ -1,4 +1,4 @@
-import lygia::space::sqTile::sqTile;
+import dkonasov__lygia::space::sqTile::sqTile;
 
 /*
 contributors: Patricio Gonzalez Vivo

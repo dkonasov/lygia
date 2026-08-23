@@ -1,4 +1,4 @@
-import lygia::math::map::map;
+import dkonasov__lygia::math::map::map;
 
 /*
 contributors: ["dahart", "Fabrice NEYRET"]
