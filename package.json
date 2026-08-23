@@ -1,5 +1,5 @@
 {
-  "name": "lygia",
+  "name": "@dkonasov/lygia",
   "version": "1.4.1",
   "description": "lygia, it's a granular and multi-language shader library designed for performance and flexibility",
   "main": "dist/umd/lygia.main.js",
@@ -25,7 +25,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/patriciogonzalezvivo/lygia.git"
+    "url": "git+https://github.com/dkonasov/lygia.git"
   },
   "keywords": [
     "library",
