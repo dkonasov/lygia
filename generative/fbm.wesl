@@ -1,4 +1,4 @@
-import lygia::generative::snoise:snoise;
+import lygia::generative::snoise::snoise;
 import lygia::generative::gnoise::gnoise;
 
 /*
