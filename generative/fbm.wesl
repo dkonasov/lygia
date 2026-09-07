@@ -1,4 +1,4 @@
-import dkonasov__lygia::generative::snoise:snoise;
+import dkonasov__lygia::generative::snoise::snoise;
 import dkonasov__lygia::generative::gnoise::gnoise;
 
 /*

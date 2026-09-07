@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 import dkonasov__lygia::math::cubic::cubic;
 import dkonasov__lygia::generative::srandom::srandom3;
-import dkonasov__lygia::generative::random::random3;
+import lygia::generative::random::random;
 import dkonasov__lygia::math::quintic::quintic;
+=======
+import lygia::math::cubic::cubic;
+import lygia::generative::srandom::srandom3;
+import lygia::generative::random::random;
+import lygia::math::quintic::quintic;
+>>>>>>> main
 
 /*
 contributors: Patricio Gonzalez Vivo
@@ -13,8 +20,8 @@ license:
 */
 
 fn gnoise(x: f32) -> f32 {
-    float i = floor(x);  // integer
-    float f = fract(x);  // fraction
+    let i = floor(x);  // integer
+    let f = fract(x);  // fraction
     return mix(random(i), random(i + 1.0), smoothstep(0.,1.,f)); 
 }
 
